@@ -69,7 +69,7 @@ struct TodayView: View {
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 8)
-                .padding(.bottom, 4)
+                .padding(.bottom, 16)
                 .readable()
                 .background(Theme.bg)
             }
