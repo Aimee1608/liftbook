@@ -20,18 +20,25 @@ struct ExerciseDetailView: View {
             let history = store.history(of: exerciseId)
             ScrollView {
                 VStack(spacing: 12) {
-                    VStack(spacing: 8) {
-                        Image(systemName: "dumbbell").font(.system(size: 40)).foregroundStyle(Theme.control)
-                        Text(ex.isBuiltin ? "暂无演示图" : "自定义动作暂无演示图").font(.system(size: 13)).foregroundStyle(Theme.tertiary)
-                    }
-                    .frame(maxWidth: .infinity).frame(height: 150).card(0)
-                    WrapLayout(spacing: 6) {
-                        ForEach(ex.primaryMuscles, id: \.self) { Chip(text: $0.label) }
-                        if !ex.secondaryMuscles.isEmpty { Chip(text: ex.secondaryMuscles.map(\.label).joined(separator: " · ")).opacity(0.7) }
-                        Chip(text: ex.equipment.label)
-                        Chip(text: ex.laterality.label)
+                    HStack(spacing: 12) {
+                        Image(systemName: "dumbbell").font(.system(size: 22)).foregroundStyle(Theme.secondary)
+                            .frame(width: 56, height: 56).background(Theme.elevated).clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                        VStack(alignment: .leading, spacing: 6) {
+                            WrapLayout(spacing: 6) {
+                                ForEach(ex.primaryMuscles, id: \.self) { Chip(text: $0.label, on: true) }
+                                if !ex.secondaryMuscles.isEmpty { Chip(text: ex.secondaryMuscles.map(\.label).joined(separator: " · ")) }
+                                Chip(text: ex.equipment.label)
+                                Chip(text: ex.laterality.label)
+                            }
+                            if let en = ex.nameEn { Text(en).font(.system(size: 12)).foregroundStyle(Theme.tertiary) }
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    progressCard(ex, p)
+                    if history.count >= 2 { chartCard(history) } else {
+                        Text("再训练几次就能看到进步曲线了").font(.system(size: 14)).foregroundStyle(Theme.secondary).frame(maxWidth: .infinity).card()
+                    }
+                    if let r = store.record(for: exerciseId) { recordsCard(r) }
                     if !ex.instructions.isEmpty {
                         VStack(alignment: .leading, spacing: 8) {
                             Text("动作要点").font(.system(size: 15, weight: .semibold))
@@ -43,12 +50,9 @@ struct ExerciseDetailView: View {
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading).card()
+                    } else if !ex.isBuiltin {
+                        Text("自定义动作暂无演示图与要点").font(.system(size: 13)).foregroundStyle(Theme.tertiary)
                     }
-                    progressCard(ex, p)
-                    if history.count >= 2 { chartCard(history) } else {
-                        Text("再训练几次就能看到进步曲线了").font(.system(size: 14)).foregroundStyle(Theme.secondary).frame(maxWidth: .infinity).card()
-                    }
-                    if let r = store.record(for: exerciseId) { recordsCard(r) }
                 }
                 .padding(16)
                 .readable()
@@ -116,6 +120,13 @@ struct ExerciseDetailView: View {
     private func chartCard(_ history: [ExerciseHistoryPoint]) -> some View {
         let cutoff: Date? = [30, 90, 365].indices.contains(range) ? Calendar.current.date(byAdding: .day, value: -[30, 90, 365][range], to: Date()) : nil
         let points = history.filter { cutoff == nil || $0.date >= cutoff! }
+        let values = points.map { pt -> Double in
+            metric == 0 ? Weight.toDisplay(pt.topWeightKg, settings.unit)
+                : metric == 1 ? Weight.toDisplay(pt.volumeKg, settings.unit)
+                : Weight.toDisplay(PersonalRecord.epley(weightKg: pt.topWeightKg, reps: pt.topReps), settings.unit)
+        }
+        let lo = values.min() ?? 0, hi = values.max() ?? 1
+        let pad = max((hi - lo) * 0.25, hi * 0.05, 1)
         return VStack(spacing: 10) {
             HStack {
                 Picker("", selection: $metric) { Text("重量").tag(0); Text("容量").tag(1); Text("估算 1RM").tag(2) }.pickerStyle(.segmented)
@@ -127,6 +138,7 @@ struct ExerciseDetailView: View {
                 LineMark(x: .value("日期", pt.date), y: .value("值", y)).foregroundStyle(Theme.accent).interpolationMethod(.monotone)
                 PointMark(x: .value("日期", pt.date), y: .value("值", y)).foregroundStyle(Theme.accent)
             }
+            .chartYScale(domain: max(0, lo - pad)...(hi + pad))
             .chartYAxis { AxisMarks(position: .leading) { AxisGridLine().foregroundStyle(Theme.separator); AxisValueLabel().foregroundStyle(Theme.secondary) } }
             .chartXAxis { AxisMarks { AxisValueLabel(format: .dateTime.month().day()).foregroundStyle(Theme.secondary) } }
             .frame(height: 160)

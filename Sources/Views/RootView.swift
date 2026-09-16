@@ -40,7 +40,15 @@ struct RootView: View {
         .environmentObject(settings)
         .environmentObject(store)
         .environmentObject(coordinator)
-        .onAppear { coordinator.autoClosed = store.autoCloseStaleSessions().first }
+        .onAppear {
+            #if DEBUG
+            if CommandLine.arguments.contains("-demoData") {
+                DemoSeed.populate(store)
+                if settings.disclaimerAcceptedAt == nil { settings.disclaimerAcceptedAt = Date() }
+            }
+            #endif
+            coordinator.autoClosed = store.autoCloseStaleSessions().first
+        }
     }
 }
 

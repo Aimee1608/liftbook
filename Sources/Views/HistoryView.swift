@@ -24,21 +24,31 @@ struct HistoryView: View {
                 EmptyState(symbol: "calendar.badge.clock", title: "还没有训练记录", message: "完成第一次训练后，这里会显示你的训练历史")
             } else {
                 ScrollViewReader { proxy in
-                    List {
-                        Section { calendarCard(proxy) .listRowInsets(EdgeInsets()).listRowBackground(Color.clear) }
-                        Section {
-                            ForEach(Array(monthSessions.enumerated()), id: \.element.id) { i, s in
-                                NavigationLink { SessionDetailView(sessionId: s.id) } label: { row(s) }
-                                    .listRowBackground(Theme.card)
-                                    .id(s.id)
-                                    .accessibilityIdentifier("history-\(i)")
-                                    .swipeActions { Button(role: .destructive) { deleting = s } label: { Label("删除", systemImage: "trash") } }
+                    ScrollView {
+                        VStack(spacing: 14) {
+                            calendarCard(proxy)
+                            SectionLabel(text: "\(Format.month(month)) · \(monthSessions.count) 次训练")
+                            if monthSessions.isEmpty {
+                                Text("这个月没有训练记录").font(.system(size: 14)).foregroundStyle(Theme.secondary).frame(maxWidth: .infinity).card()
+                            } else {
+                                VStack(spacing: 0) {
+                                    ForEach(Array(monthSessions.enumerated()), id: \.element.id) { i, s in
+                                        NavigationLink { SessionDetailView(sessionId: s.id) } label: { row(s) }
+                                            .buttonStyle(.plain)
+                                            .id(s.id)
+                                            .accessibilityIdentifier("history-\(i)")
+                                            .contextMenu { Button("删除这次记录", systemImage: "trash", role: .destructive) { deleting = s } }
+                                        if i < monthSessions.count - 1 { Divider().overlay(Theme.separator).padding(.leading, 16) }
+                                    }
+                                }
+                                .background(Theme.card)
+                                .clipShape(RoundedRectangle(cornerRadius: Theme.cardRadius, style: .continuous))
                             }
-                        } header: {
-                            Text("\(Format.month(month)) · \(monthSessions.count) 次训练")
                         }
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 16)
+                        .readable()
                     }
-                    .scrollContentBackground(.hidden)
                 }
             }
         }
@@ -53,7 +63,7 @@ struct HistoryView: View {
 
     private func row(_ s: WorkoutSession) -> some View {
         HStack(spacing: 14) {
-            Text(Format.relativeDay(s.startedAt)).font(.num(13, .medium)).foregroundStyle(Theme.secondary).frame(width: 56, alignment: .leading)
+            Text(Format.relativeDay(s.startedAt)).font(.num(13, .medium)).foregroundStyle(Theme.secondary).frame(width: 60, alignment: .leading)
             VStack(alignment: .leading, spacing: 3) {
                 Text(s.planDayNameSnapshot).font(.system(size: 16, weight: .medium))
                 if s.exercises.isEmpty, let c = s.cardioEntries.first {
@@ -64,8 +74,11 @@ struct HistoryView: View {
             }
             Spacer()
             if !store.newRecords(in: s).isEmpty { Chip(text: "PR", on: true) }
+            Image(systemName: "chevron.right").font(.system(size: 13, weight: .semibold)).foregroundStyle(Theme.tertiary)
         }
-        .frame(minHeight: 52)
+        .frame(minHeight: 60)
+        .padding(.horizontal, 16)
+        .contentShape(Rectangle())
     }
 
     private func calendarCard(_ proxy: ScrollViewProxy) -> some View {
@@ -109,7 +122,6 @@ struct HistoryView: View {
             }
         }
         .card(12)
-        .padding(.horizontal, 16)
     }
 
     private func monthGrid() -> [Date?] {
