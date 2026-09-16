@@ -1,0 +1,56 @@
+name: Liftbook
+options:
+  bundleIdPrefix: com.aimee
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  Liftbook:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.aimee.liftbook
+        GENERATE_INFOPLIST_FILE: "YES"
+        ASSETCATALOG_COMPILER_APPICON_NAME: "AppIcon"
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        DEVELOPMENT_TEAM: "3LM3J9NPCR"
+        CODE_SIGN_STYLE: Automatic
+        INFOPLIST_KEY_UILaunchScreen_Generation: "YES"
+        INFOPLIST_KEY_CFBundleDisplayName: "举铁本"
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        SUPPORTS_MACCATALYST: "NO"
+        # iPad 多任务强制要求声明全部 4 个方向,不声明的话 App Store 上传直接被拒
+        # ("No orientations were specified")。GENERATE_INFOPLIST_FILE 不认 "KEY~ipad"
+        # 这种带 idiom 后缀的写法,所以 iPhone/iPad 不区分,统一开 4 个方向。
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+      configs:
+        # 自动签名下 CODE_SIGN_IDENTITY 只能是 "Apple Development",手动指定发行身份
+        # 会报 conflicting provisioning settings——切发行身份是 -exportArchive 那一步的事。
+        Debug:
+          CODE_SIGN_IDENTITY: "Apple Development"
+        Release:
+          CODE_SIGN_IDENTITY: "Apple Development"
+  LiftbookUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - UITests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: "YES"
+        SWIFT_VERSION: "5.0"
+    dependencies:
+      - target: Liftbook
+schemes:
+  Liftbook:
+    build:
+      targets:
+        Liftbook: all
+        LiftbookUITests: [test]
+    test:
+      targets:
+        - LiftbookUITests

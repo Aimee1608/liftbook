@@ -1,0 +1,12 @@
+.DS_Store
+*.xcodeproj/
+*.xcworkspace/
+DerivedData/
+build/
+.build/
+xcuserdata/
+*.xcuserstate
+
+# 本机开发环境速查:含路径、账号、隧道信息,不进公开仓库
+CLAUDE.md
+.tmp/
