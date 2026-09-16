@@ -64,8 +64,8 @@ struct TodayView: View {
                     .disabled(shown.day.items.isEmpty)
                     .accessibilityIdentifier("start-workout")
                     Button("记一次有氧") { loggingCardio = true }
-                        .buttonStyle(ChipButtonStyle(accentText: true))
-                        .frame(height: 40)
+                        .buttonStyle(GrayButtonStyle())
+                        .accessibilityIdentifier("log-cardio")
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 8)
