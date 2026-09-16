@@ -98,6 +98,38 @@ final class WorkoutStore: ObservableObject {
         savePlans()
     }
 
+    @discardableResult
+    func duplicatePlan(id: UUID) -> WorkoutPlan? {
+        guard let src = plans.first(where: { $0.id == id }) else { return nil }
+        var copy = WorkoutPlan(name: src.name + " 副本", days: src.days.map { day in
+            PlanDay(name: day.name, targetMuscles: day.targetMuscles, items: day.items.map {
+                PlanItem(exerciseId: $0.exerciseId, targetSets: $0.targetSets, repRangeMin: $0.repRangeMin,
+                         repRangeMax: $0.repRangeMax, restSecondsOverride: $0.restSecondsOverride, note: $0.note)
+            })
+        })
+        copy.createdAt = now()
+        addPlan(copy, activate: false)
+        return copy
+    }
+
+    func plansReferencing(_ exerciseId: String) -> [WorkoutPlan] {
+        plans.filter { $0.days.contains { $0.items.contains { $0.exerciseId == exerciseId } } }
+    }
+
+    func removeExerciseFromPlans(_ exerciseId: String) {
+        for i in plans.indices {
+            for d in plans[i].days.indices { plans[i].days[d].items.removeAll { $0.exerciseId == exerciseId } }
+        }
+        savePlans()
+    }
+
+    func estimatedSeconds(for day: PlanDay) -> Int {
+        day.items.reduce(0) { total, item in
+            let rest = item.restSecondsOverride ?? library[item.exerciseId]?.defaultRestSeconds ?? Limits.restIsolation
+            return total + item.targetSets * (Limits.workSecondsPerSetEstimate + rest)
+        }
+    }
+
     func setActivePlan(id: UUID) {
         guard plans.contains(where: { $0.id == id }) else { return }
         activePlanId = id
@@ -121,6 +153,17 @@ final class WorkoutStore: ObservableObject {
     func setExerciseArchived(_ id: String, _ archived: Bool) {
         library.setArchived(id, archived)
         saveLibrary()
+    }
+
+    func isNameTaken(_ name: String, excluding id: String? = nil) -> Bool {
+        let n = name.trimmingCharacters(in: .whitespaces)
+        return library.all.contains { $0.id != id && !$0.isArchived && $0.nameZh == n }
+    }
+
+    func recentExerciseIds(limit: Int = 20) -> [String] {
+        progress.values.filter { $0.lastTrainedAt != nil }
+            .sorted { $0.lastTrainedAt! > $1.lastTrainedAt! }
+            .prefix(limit).map(\.exerciseId)
     }
 
     func alternatives(for exercise: ExerciseDefinition, limit: Int = 5) -> [ExerciseDefinition] {
@@ -380,6 +423,34 @@ final class WorkoutStore: ObservableObject {
         if let outcome = session.exercises[index].progression { revert(outcome) }
         session.exercises.remove(at: index)
         store(session)
+    }
+
+    func moveExercise(_ sessionId: UUID, _ entryId: UUID, by offset: Int) {
+        mutate(sessionId) { s in
+            guard let i = s.exerciseIndex(entryId) else { return }
+            let j = i + offset
+            guard s.exercises.indices.contains(j) else { return }
+            s.exercises.swapAt(i, j)
+        }
+    }
+
+    func deleteSession(_ sessionId: UUID) {
+        sessions.removeAll { $0.id == sessionId }
+        try? FileManager.default.removeItem(at: sessionsDir.appendingPathComponent("\(sessionId.uuidString).json"))
+    }
+
+    func totalReps(of session: WorkoutSession) -> Int {
+        session.exercises.reduce(0) { $0 + $1.completedWorkingSets.reduce(0) { $0 + $1.reps } }
+    }
+
+    func cardioTypeFrequency() -> [CardioType: Int] {
+        var f: [CardioType: Int] = [:]
+        for s in sessions where s.status == .completed { for c in s.cardioEntries { f[c.type, default: 0] += 1 } }
+        return f
+    }
+
+    func lastSetsByIndex(of exerciseId: String, before session: WorkoutSession) -> [SetRecord] {
+        lastPerformance(of: exerciseId, before: session)?.completedWorkingSets ?? []
     }
 
     func addCardio(_ sessionId: UUID, _ entry: CardioEntry) {
