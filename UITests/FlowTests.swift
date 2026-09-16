@@ -8,6 +8,11 @@ final class FlowTests: XCTestCase {
         add(att)
     }
 
+    private func tab(_ app: XCUIApplication, _ name: String) {
+        let bar = app.tabBars.buttons[name]
+        if bar.waitForExistence(timeout: 2) { bar.tap() } else { tap(app.buttons.matching(identifier: name).firstMatch) }
+    }
+
     private func tap(_ el: XCUIElement, _ timeout: TimeInterval = 5) {
         XCTAssertTrue(el.waitForExistence(timeout: timeout), "missing \(el)")
         el.tap()
@@ -67,15 +72,15 @@ final class FlowTests: XCTestCase {
         XCTAssertTrue(app.buttons["start-workout"].waitForExistence(timeout: 8))
         shot(app, "11-home-after")
 
-        tap(app.tabBars.buttons["历史"])
+        tab(app, "历史")
         shot(app, "12-history")
-        tap(app.tabBars.buttons["动作"])
+        tab(app, "动作")
         XCTAssertTrue(app.buttons["lib-barbell-bench-press"].waitForExistence(timeout: 5))
         shot(app, "13-library")
         app.buttons["lib-barbell-bench-press"].tap()
         XCTAssertTrue(app.buttons["adjust-progress"].waitForExistence(timeout: 5))
         shot(app, "14-detail")
-        tap(app.tabBars.buttons["设置"])
+        tab(app, "设置")
         shot(app, "15-settings")
     }
 }

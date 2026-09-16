@@ -22,10 +22,11 @@ struct HistoryView: View {
                     List {
                         Section { calendarCard(proxy) .listRowInsets(EdgeInsets()).listRowBackground(Color.clear) }
                         Section {
-                            ForEach(monthSessions) { s in
+                            ForEach(Array(monthSessions.enumerated()), id: \.element.id) { i, s in
                                 NavigationLink { SessionDetailView(sessionId: s.id) } label: { row(s) }
                                     .listRowBackground(Theme.card)
                                     .id(s.id)
+                                    .accessibilityIdentifier("history-\(i)")
                                     .swipeActions { Button(role: .destructive) { deleting = s } label: { Label("删除", systemImage: "trash") } }
                             }
                         } header: {

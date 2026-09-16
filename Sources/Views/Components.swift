@@ -3,6 +3,7 @@ import SwiftUI
 struct MuscleMultiSelect: View {
     @Binding var selection: [MuscleGroup]
     var minimumOne = true
+    var idPrefix = "muscle"
 
     private static let groups: [(String, [MuscleGroup])] = [
         ("上肢推", [.chest, .shoulders, .triceps]),
@@ -21,7 +22,7 @@ struct MuscleMultiSelect: View {
                             let on = selection.contains(m)
                             Button(m.label) { toggle(m) }
                                 .buttonStyle(ChipButtonStyle(on: on))
-                                .accessibilityIdentifier("muscle-\(m.rawValue)")
+                                .accessibilityIdentifier("\(idPrefix)-\(m.rawValue)")
                         }
                     }
                 }

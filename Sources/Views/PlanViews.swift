@@ -88,6 +88,7 @@ struct PlanEditorView: View {
 
 struct PlanStructureEditor: View {
     @Binding var plan: WorkoutPlan
+    @State private var editMode: EditMode = .inactive
 
     var body: some View {
         List {
@@ -121,6 +122,7 @@ struct PlanStructureEditor: View {
         }
         .scrollContentBackground(.hidden)
         .screenBackground()
-        .toolbar { ToolbarItem(placement: .topBarTrailing) { EditButton() } }
+        .environment(\.editMode, $editMode)
+        .toolbar { ToolbarItem(placement: .topBarTrailing) { Button(editMode == .active ? "完成" : "排序") { editMode = editMode == .active ? .inactive : .active } } }
     }
 }

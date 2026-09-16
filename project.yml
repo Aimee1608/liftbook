@@ -1,6 +1,7 @@
 name: Liftbook
 options:
   bundleIdPrefix: com.aimee
+  developmentLanguage: zh-Hans
   deploymentTarget:
     iOS: "16.0"
 targets:
@@ -20,6 +21,7 @@ targets:
         CODE_SIGN_STYLE: Automatic
         INFOPLIST_KEY_UILaunchScreen_Generation: "YES"
         INFOPLIST_KEY_CFBundleDisplayName: "举铁本"
+        INFOPLIST_KEY_CFBundleDevelopmentRegion: "zh-Hans"
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1,2"
         SUPPORTS_MACCATALYST: "NO"

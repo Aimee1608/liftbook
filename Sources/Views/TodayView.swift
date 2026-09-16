@@ -52,6 +52,9 @@ struct TodayView: View {
                 VStack(spacing: 8) {
                     if shown.day.items.isEmpty {
                         Text("这一天还没有安排动作").font(.system(size: 13)).foregroundStyle(Theme.secondary)
+                        if let plan = store.activePlan {
+                            NavigationLink("去添加动作") { PlanEditorView(planId: plan.id) }.font(.system(size: 15, weight: .medium))
+                        }
                     }
                     Button("开始训练") {
                         if let s = store.startSession(day: shown.day) { coordinator.open(s.id) }

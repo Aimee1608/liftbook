@@ -79,7 +79,7 @@ struct CustomExerciseEditor: View {
                     TextField("英文名（可选）", text: $nameEn)
                 }
                 Section("主要肌群（必填）") { MuscleMultiSelect(selection: $primary, minimumOne: false).padding(.vertical, 6) }
-                Section("次要肌群") { MuscleMultiSelect(selection: $secondary, minimumOne: false).padding(.vertical, 6) }
+                Section("次要肌群") { MuscleMultiSelect(selection: $secondary, minimumOne: false, idPrefix: "secondary").padding(.vertical, 6) }
                 Section {
                     Picker("器械类型", selection: $equipment) { ForEach(EquipmentType.allCases, id: \.self) { Text($0.label).tag($0) } }
                         .onChange(of: equipment) { e in incrementSteps = Int(Increment.defaultKg(equipment: e, muscle: primary.first ?? .chest) / 0.25) }
