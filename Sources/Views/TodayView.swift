@@ -17,6 +17,12 @@ struct TodayView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 14) {
+                PageHeader(title: "训练") {
+                    NavigationLink { PlanListView() } label: { Text("计划").font(.system(size: 15, weight: .medium)) }
+                        .buttonStyle(ChipButtonStyle(accentText: true))
+                        .accessibilityIdentifier("nav-plans")
+                }
+                .padding(.horizontal, -16)
                 if let closed = coordinator.autoClosed {
                     autoClosedBanner(closed)
                 }
@@ -41,12 +47,7 @@ struct TodayView: View {
             .readable()
         }
         .screenBackground()
-        .navigationTitle("训练")
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink("计划") { PlanListView() }.accessibilityIdentifier("nav-plans")
-            }
-        }
+        .toolbar(.hidden, for: .navigationBar)
         .safeAreaInset(edge: .bottom) {
             if store.activeSession == nil, let shown {
                 VStack(spacing: 8) {
@@ -62,7 +63,9 @@ struct TodayView: View {
                     .buttonStyle(PrimaryButtonStyle())
                     .disabled(shown.day.items.isEmpty)
                     .accessibilityIdentifier("start-workout")
-                    Button("记一次有氧") { loggingCardio = true }.font(.system(size: 14)).foregroundStyle(Theme.secondary)
+                    Button("记一次有氧") { loggingCardio = true }
+                        .buttonStyle(ChipButtonStyle(accentText: true))
+                        .frame(height: 40)
                 }
                 .padding(.horizontal, 16)
                 .padding(.top, 8)

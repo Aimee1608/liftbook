@@ -9,7 +9,7 @@
 | 项目 | 值 / 位置 |
 |---|---|
 | Bundle ID | `com.aimee.liftbook` |
-| App Store 名称 | 举铁本 |
+| App Store 名称 | 力训笔记 |
 | 隐私政策 URL | https://aimee1608.github.io/liftbook/privacy-policy |
 | 分类 | 健康健美 |
 | 年龄分级 | 4+（全选"无"） |
@@ -87,7 +87,7 @@ Xcode → `Window` → `Organizer` → 选中这个 archive → **Distribute App
 
 ### 3. App Store Connect
 
-1. 我的 App → 举铁本 → 左侧 **「+ 版本或平台」** → 填新版本号
+1. 我的 App → 力训笔记 → 左侧 **「+ 版本或平台」** → 填新版本号
 2. **截图**：UI 有明显变化时必须换，否则违反 Guideline 2.3.3
 3. 填「**本次更新内容**」
 4. 选构建版本（上传后要等 10~30 分钟处理完才出现）

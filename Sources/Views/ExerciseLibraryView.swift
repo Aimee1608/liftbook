@@ -15,6 +15,11 @@ struct ExerciseLibraryView: View {
 
     var body: some View {
         VStack(spacing: 10) {
+            PageHeader(title: "动作") {
+                Button { creating = true } label: { Image(systemName: "plus").font(.system(size: 17, weight: .semibold)).frame(width: 36, height: 36) }
+                    .background(Theme.elevated).clipShape(Circle())
+                    .accessibilityIdentifier("lib-add")
+            }
             SearchField(text: $query)
             ExerciseFilterBar(muscle: $muscle, equipment: $equipment, showCustomToggle: true, customOnly: $customOnly)
             if results.isEmpty {
@@ -38,10 +43,8 @@ struct ExerciseLibraryView: View {
                 .scrollContentBackground(.hidden)
             }
         }
-        .padding(.top, 4)
         .screenBackground()
-        .navigationTitle("动作")
-        .toolbar { ToolbarItem(placement: .topBarTrailing) { Button { creating = true } label: { Image(systemName: "plus") }.accessibilityIdentifier("lib-add") } }
+        .toolbar(.hidden, for: .navigationBar)
         .sheet(isPresented: $creating) { CustomExerciseEditor(presetName: query) { _ in query = "" } }
     }
 }

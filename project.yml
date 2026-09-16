@@ -20,7 +20,7 @@ targets:
         DEVELOPMENT_TEAM: "3LM3J9NPCR"
         CODE_SIGN_STYLE: Automatic
         INFOPLIST_KEY_UILaunchScreen_Generation: "YES"
-        INFOPLIST_KEY_CFBundleDisplayName: "举铁本"
+        INFOPLIST_KEY_CFBundleDisplayName: "力训笔记"
         INFOPLIST_KEY_CFBundleDevelopmentRegion: "zh-Hans"
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1,2"

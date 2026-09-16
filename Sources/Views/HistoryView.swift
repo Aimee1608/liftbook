@@ -14,7 +14,12 @@ struct HistoryView: View {
     }
 
     var body: some View {
-        Group {
+        VStack(spacing: 0) {
+            PageHeader(title: "历史") {
+                Button { backfilling = true } label: { Image(systemName: "plus").font(.system(size: 17, weight: .semibold)).frame(width: 36, height: 36) }
+                    .background(Theme.elevated).clipShape(Circle())
+                    .accessibilityIdentifier("history-add")
+            }
             if store.completedSessions.isEmpty {
                 EmptyState(symbol: "calendar.badge.clock", title: "还没有训练记录", message: "完成第一次训练后，这里会显示你的训练历史")
             } else {
@@ -38,8 +43,7 @@ struct HistoryView: View {
             }
         }
         .screenBackground()
-        .navigationTitle("历史")
-        .toolbar { ToolbarItem(placement: .topBarTrailing) { Button { backfilling = true } label: { Image(systemName: "plus") } } }
+        .toolbar(.hidden, for: .navigationBar)
         .sheet(isPresented: $backfilling) { BackfillSheet() }
         .alert("删除这次训练记录？", isPresented: Binding(get: { deleting != nil }, set: { if !$0 { deleting = nil } })) {
             Button("删除", role: .destructive) { if let d = deleting { store.deleteSession(d.id) } }
@@ -85,12 +89,17 @@ struct HistoryView: View {
                         Button {
                             if let s = monthSessions.first(where: { calendar.isDate($0.startedAt, inSameDayAs: d) }) { withAnimation { proxy.scrollTo(s.id, anchor: .top) } }
                         } label: {
-                            VStack(spacing: 2) {
-                                Text("\(calendar.component(.day, from: d))").font(.num(15, .medium)).foregroundStyle(today ? Theme.onAccent : .white)
-                                    .frame(width: 32, height: 32).background(today ? Theme.accent : .clear).clipShape(Circle())
-                                Circle().fill(n > 0 ? Theme.accent : .clear).frame(width: n > 1 ? 6 : 4, height: n > 1 ? 6 : 4)
+                            VStack(spacing: 3) {
+                                Text("\(calendar.component(.day, from: d))")
+                                    .font(.num(15, n > 0 ? .bold : .medium))
+                                    .foregroundStyle(n > 0 ? Theme.onAccent : (today ? Theme.accent : .white))
+                                    .frame(width: 34, height: 34)
+                                    .background(n > 0 ? Theme.accent : .clear)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(today ? Theme.accent : .clear, lineWidth: 2))
+                                Circle().fill(n > 1 ? Theme.accent : .clear).frame(width: 5, height: 5)
                             }
-                            .frame(height: 44)
+                            .frame(height: 46)
                         }
                         .buttonStyle(.plain)
                     } else {

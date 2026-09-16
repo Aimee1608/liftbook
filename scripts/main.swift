@@ -7,6 +7,8 @@ func check(_ condition: Bool, _ label: String) {
     if !condition { failures += 1 }
 }
 
+struct AnyDecodable: Decodable { init(from decoder: Decoder) throws {} }
+
 func approx(_ a: Double?, _ b: Double) -> Bool {
     guard let a else { return false }
     return abs(a - b) < 1e-6
@@ -324,6 +326,14 @@ func runSmoke() {
     check(s2.progress(for: "bench").currentWeightKg == nil && s2.progress(for: "bench").incrementOverrideKg == 1.25, "重置进度清空重量，保留步长覆盖")
     let customCompound = ExerciseDefinition(nameZh: "自定义器械推", primaryMuscles: [.chest], equipment: .machine, incrementKgOverride: 1.0, restSecondsOverride: 120, repRangeMinOverride: 6, repRangeMaxOverride: 9)
     check(customCompound.defaultIncrementKg == 1.0 && customCompound.defaultRestSeconds == 120 && customCompound.defaultRepRange == 6...9, "自定义动作可覆盖步长/休息/区间")
+
+    print("\n导出")
+    let text = s2.exportText(unit: .kg)
+    check(text.contains("杠铃卧推") && text.contains("×8"), "文本导出含动作与组记录")
+    check(s2.exportCSV().split(separator: "\n").count > 5 && s2.exportCSV().hasPrefix("日期,"), "CSV 导出有表头与数据行")
+    if let raw = try? s2.exportBackup(), let back = try? JSONDecoder().decode([String: AnyDecodable].self, from: raw) {
+        check(back["sessions"] != nil && back["plans"] != nil && back["progress"] != nil, "JSON 备份含 sessions/plans/progress")
+    } else { check(false, "JSON 备份可解析") }
 
     print("\n真实动作库")
     let libDir = URL(fileURLWithPath: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "Sources/Resources/Library")

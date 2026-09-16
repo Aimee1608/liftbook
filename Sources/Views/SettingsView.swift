@@ -2,9 +2,14 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject private var settings: AppSettings
+    @EnvironmentObject private var store: WorkoutStore
     @State private var notificationsDenied = false
+    @State private var shareURL: URL?
+    @State private var exportError: String?
 
     var body: some View {
+        VStack(spacing: 0) {
+        PageHeader(title: "设置") { EmptyView() }
         List {
             Section("单位") {
                 Picker("重量单位", selection: $settings.unit) { ForEach(WeightUnit.allCases, id: \.self) { Text($0.label).tag($0) } }.pickerStyle(.segmented)
@@ -27,6 +32,13 @@ struct SettingsView: View {
             Section("计划") {
                 NavigationLink("训练计划管理") { PlanListView() }
             }
+            Section {
+                Button { export(.text) } label: { Label("导出训练记录（文本）", systemImage: "doc.text") }
+                Button { export(.csv) } label: { Label("导出训练记录（CSV 表格）", systemImage: "tablecells") }
+                Button { export(.backup) } label: { Label("导出全部数据（JSON 备份）", systemImage: "externaldrive") }
+            } header: { Text("数据") } footer: {
+                Text("文本和 CSV 适合自己看或导入表格；JSON 备份包含计划、进度、自定义动作和全部训练记录。")
+            }
             Section("关于") {
                 NavigationLink("免责声明") { DisclaimerView(requiresAcceptance: false) }
                 NavigationLink("关于本应用") { AboutView() }
@@ -34,9 +46,36 @@ struct SettingsView: View {
         }
         .tint(Theme.accent)
         .scrollContentBackground(.hidden)
+        }
         .screenBackground()
-        .navigationTitle("设置")
+        .toolbar(.hidden, for: .navigationBar)
         .onAppear { NotificationManager.isDenied { notificationsDenied = $0 } }
+        .sheet(item: $shareURL) { url in ShareSheet(items: [url]) }
+        .alert("导出失败", isPresented: Binding(get: { exportError != nil }, set: { if !$0 { exportError = nil } })) {
+            Button("好", role: .cancel) {}
+        } message: { Text(exportError ?? "") }
+    }
+
+    private enum ExportKind { case text, csv, backup }
+
+    private func export(_ kind: ExportKind) {
+        let f = DateFormatter()
+        f.dateFormat = "yyyyMMdd-HHmm"
+        let stamp = f.string(from: Date())
+        do {
+            let (name, data): (String, Data) = try {
+                switch kind {
+                case .text: return ("力训笔记训练记录-\(stamp).txt", Data(store.exportText(unit: settings.unit).utf8))
+                case .csv: return ("力训笔记训练记录-\(stamp).csv", Data(("\u{FEFF}" + store.exportCSV()).utf8))
+                case .backup: return ("力训笔记备份-\(stamp).json", try store.exportBackup())
+                }
+            }()
+            let url = FileManager.default.temporaryDirectory.appendingPathComponent(name)
+            try data.write(to: url, options: .atomic)
+            shareURL = url
+        } catch {
+            exportError = error.localizedDescription
+        }
     }
 
     private func toggle(_ title: String, _ subtitle: String, _ binding: Binding<Bool>) -> some View {
@@ -67,4 +106,14 @@ struct AboutView: View {
         .navigationTitle("关于本应用")
         .navigationBarTitleDisplayMode(.inline)
     }
+}
+
+struct ShareSheet: UIViewControllerRepresentable {
+    var items: [Any]
+    func makeUIViewController(context: Context) -> UIActivityViewController { UIActivityViewController(activityItems: items, applicationActivities: nil) }
+    func updateUIViewController(_ vc: UIActivityViewController, context: Context) {}
+}
+
+extension URL: Identifiable {
+    public var id: String { absoluteString }
 }

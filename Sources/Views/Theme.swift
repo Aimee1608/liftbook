@@ -126,6 +126,22 @@ struct Chip: View {
     }
 }
 
+struct PageHeader<Trailing: View>: View {
+    var title: String
+    @ViewBuilder var trailing: Trailing
+
+    var body: some View {
+        HStack(alignment: .firstTextBaseline) {
+            Text(title).font(.system(size: 34, weight: .bold)).tracking(-0.5)
+            Spacer()
+            trailing
+        }
+        .padding(.horizontal, 20)
+        .padding(.top, 8)
+        .padding(.bottom, 6)
+    }
+}
+
 struct EmptyState: View {
     var symbol: String
     var title: String

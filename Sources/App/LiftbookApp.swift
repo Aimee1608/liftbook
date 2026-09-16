@@ -6,7 +6,7 @@ struct LiftbookApp: App {
         #if DEBUG
         if CommandLine.arguments.contains("-resetData") {
             try? FileManager.default.removeItem(at: WorkoutStore.appDirectory())
-            UserDefaults.standard.removeObject(forKey: "disclaimerAcceptedAt")
+            if let domain = Bundle.main.bundleIdentifier { UserDefaults.standard.removePersistentDomain(forName: domain) }
         }
         #endif
     }

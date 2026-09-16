@@ -630,6 +630,15 @@ final class WorkoutStore: ObservableObject {
         }
     }
 
+    // MARK: - 导出
+
+    func exportBackup() throws -> Data {
+        try Export.backup(plans: plans, activePlanId: activePlanId, progress: progress, library: library.state, sessions: sessions, now: now())
+    }
+
+    func exportText(unit: WeightUnit) -> String { Export.text(sessions: sessions, library: library, unit: unit) }
+    func exportCSV() -> String { Export.csv(sessions: sessions, library: library) }
+
     // MARK: - 内部写入
 
     private func mutate(_ sessionId: UUID, _ body: (inout WorkoutSession) -> Void) {
