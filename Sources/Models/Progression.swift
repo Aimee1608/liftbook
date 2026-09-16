@@ -43,8 +43,8 @@ enum ProgressionEngine {
 
         if !allMet {
             let failures = consecutiveFailures + 1
-            if failures >= 2 {
-                let deload = Increment.round(targetWeightKg * 0.9, to: incrementKg, .down)
+            if failures >= Limits.deloadFailureThreshold {
+                let deload = Increment.round(targetWeightKg * Limits.deloadFactor, to: incrementKg, .down)
                 return ProgressionResult(kind: .suggestDeload, weightKg: deload, reps: repMin, failures: 0,
                                          reason: "连续两次未达标，建议减重 10% 至 \(Weight.text(deload, unit))，次数回到 \(repMin) 次重新爬升")
             }
@@ -80,18 +80,14 @@ enum Detraining {
                            incrementKg: Double, now: Date, unit: WeightUnit = .kg) -> DecaySuggestion? {
         guard let last = lastTrainedAt, let weight = currentWeightKg, weight > 0 else { return nil }
         if let applied = lastDecayAppliedAt, applied > last { return nil }
-        let days = Int(now.timeIntervalSince(last) / 86_400)
-        let factor: Double
-        switch days {
-        case ..<14: return nil
-        case 14..<30: factor = 0.95
-        case 30..<60: factor = 0.90
-        default: factor = 0.80
-        }
-        let suggested = Increment.round(weight * factor, to: incrementKg, .down)
-        let reason = days >= 60
+        let days = Calendar.current.dateComponents([.day], from: Calendar.current.startOfDay(for: last),
+                                                   to: Calendar.current.startOfDay(for: now)).day ?? 0
+        guard let tier = Limits.decayTiers.last(where: { days >= $0.days }) else { return nil }
+        let suggested = Increment.round(weight * tier.factor, to: incrementKg, .down)
+        let retestDays = Limits.decayTiers.last?.days ?? 60
+        let reason = days >= retestDays
             ? "距上次训练已 \(days) 天，建议从 \(Weight.text(suggested, unit)) 起用探底组重新确定重量"
             : "距上次训练 \(days) 天，建议本次降至 \(Weight.text(suggested, unit)) 作为过渡"
-        return DecaySuggestion(weightKg: suggested, days: days, needsRetest: days >= 60, reason: reason)
+        return DecaySuggestion(weightKg: suggested, days: days, needsRetest: days >= retestDays, reason: reason)
     }
 }

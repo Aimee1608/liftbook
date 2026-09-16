@@ -104,7 +104,7 @@ enum Weight {
 
     static func text(_ kg: Double, _ unit: WeightUnit, withUnit: Bool = true) -> String {
         let v = toDisplay(kg, unit)
-        let rounded = (v * 100).rounded() / 100
+        let rounded = unit == .lb ? (v * 2).rounded() / 2 : (v * 100).rounded() / 100
         let s = rounded == rounded.rounded() ? String(Int(rounded)) : String(format: "%.1f", rounded)
         return withUnit ? "\(s) \(unit.label)" : s
     }

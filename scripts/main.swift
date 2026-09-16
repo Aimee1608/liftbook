@@ -92,7 +92,8 @@ func runSmoke() {
     check(Increment.round(52.5, to: 2.5, .up) == 52.5, "整档向上吸附不跳档")
     check(Increment.round(81, to: 5, .up) == 85, "81 向上吸附到 85")
     check(Weight.text(50, .kg) == "50 kg" && Weight.text(52.5, .kg) == "52.5 kg", "kg 文本")
-    check(Weight.text(50, .lb) == "110.2 lb", "lb 显示换算")
+    check(Weight.text(50, .lb) == "110 lb" && Weight.text(52.5, .lb) == "115.5 lb", "lb 显示换算到 0.5")
+    check(store.library.search("glwt").map(\.id) == ["bench"] && Pinyin.initials("杠铃卧推") == "glwt", "拼音首字母搜索 glwt → 杠铃卧推（实际 \(Pinyin.initials("杠铃卧推"))）")
     check(approx(Weight.toKg(Weight.toDisplay(47.5, .lb), .lb), 47.5), "lb 往返换算无损")
 
     print("\n渐进引擎 A")
@@ -133,11 +134,16 @@ func runSmoke() {
     p = store.progress(for: "bench")
     check(store.session(s.id)!.exercises[0].progression?.kind == .hold && p.consecutiveFailures == 1 && p.currentTargetReps == 12, "A3 12/12/12/8 → 保持，failures = 1")
     store.endSession(s.id)
+    check(store.session(s.id)!.exercises.count == 1 && store.session(s.id)!.exercises[0].sets.count == 4, "结束训练：未完成的飞鸟条目被清掉，卧推 4 组保留")
 
     s = store.startSession(day: chest)!
     complete(store, s, 0, reps: [12, 11, 10, 9])
     p = store.progress(for: "bench")
     check(store.session(s.id)!.exercises[0].progression?.kind == .suggestDeload && approx(p.currentWeightKg, 45) && p.currentTargetReps == 8, "A4 连续两次未达标 → deload 45kg × 8")
+    store.setProgressionAccepted(s.id, s.exercises[0].id, false)
+    p = store.progress(for: "bench")
+    check(approx(p.currentWeightKg, 50) && p.currentTargetReps == 12 && p.consecutiveFailures == 2, "拒绝 deload → 重量次数不变，失败计数保留为 2")
+    store.setProgressionAccepted(s.id, s.exercises[0].id, true)
     store.endSession(s.id)
 
     s = store.startSession(day: chest)!
@@ -188,6 +194,12 @@ func runSmoke() {
     check(flyEntry.plannedWeightKg == nil && store.target(for: chest.items[1])?.state == .needsInitialWeight, "A9 未设重量 → needsInitialWeight")
     complete(store, s, 1, reps: [12, 12, 12])
     check(store.session(s.id)!.exercises[1].progression == nil, "A9 未设重量不执行渐进")
+    store.discardSession(s.id)
+    s = store.startSession(day: chest)!
+    complete(store, s, 0, reps: [10, 10])
+    store.skipExercise(s.id, s.exercises[0].id)
+    let skipped = store.session(s.id)!.exercises[0]
+    check(skipped.isSkipped && skipped.sets.count == 2 && skipped.progression == nil, "跳过动作：移除未完成组且不触发渐进")
     store.discardSession(s.id)
     s = store.startSession(day: chest)!
     store.setInitialWeight(s.id, s.exercises[1].id, kg: 14)
@@ -307,6 +319,11 @@ func runSmoke() {
     let last = s2.lastPerformance(of: "bench", before: WorkoutSession(startedAt: clock2, planDayNameSnapshot: "", exercises: []))
     check(last != nil && last!.completedWorkingSets.count == 4, "上次成绩查询")
     check(s2.history(of: "bench").count >= 5, "动作历史曲线点数")
+    s2.setIncrementOverride("bench", kg: 1.25)
+    s2.resetProgress("bench")
+    check(s2.progress(for: "bench").currentWeightKg == nil && s2.progress(for: "bench").incrementOverrideKg == 1.25, "重置进度清空重量，保留步长覆盖")
+    let customCompound = ExerciseDefinition(nameZh: "自定义器械推", primaryMuscles: [.chest], equipment: .machine, incrementKgOverride: 1.0, restSecondsOverride: 120, repRangeMinOverride: 6, repRangeMaxOverride: 9)
+    check(customCompound.defaultIncrementKg == 1.0 && customCompound.defaultRestSeconds == 120 && customCompound.defaultRepRange == 6...9, "自定义动作可覆盖步长/休息/区间")
 
     print("\n真实动作库")
     let libDir = URL(fileURLWithPath: CommandLine.arguments.count > 1 ? CommandLine.arguments[1] : "Sources/Resources/Library")

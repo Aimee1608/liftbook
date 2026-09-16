@@ -31,13 +31,12 @@ private struct PlansFile: Codable {
 
 @MainActor
 final class WorkoutStore: ObservableObject {
-    static let staleSessionInterval: TimeInterval = 6 * 3600
-
     @Published private(set) var library: ExerciseLibrary
     @Published private(set) var plans: [WorkoutPlan] = []
     @Published private(set) var activePlanId: UUID?
     @Published private(set) var progress: [String: ExerciseProgress] = [:]
     @Published private(set) var sessions: [WorkoutSession] = []
+    @Published var saveError: String?
     let templates: [SplitTemplate]
     var now: () -> Date = Date.init
 
@@ -158,8 +157,12 @@ final class WorkoutStore: ObservableObject {
     }
 
     func resetProgress(_ exerciseId: String) {
-        progress[exerciseId] = nil
-        saveProgress()
+        guard progress[exerciseId] != nil else { return }
+        updateProgress(exerciseId) {
+            $0.currentWeightKg = (library[exerciseId]?.equipment.isLoadable ?? true) ? nil : 0
+            $0.currentTargetReps = library[exerciseId]?.defaultRepRange.lowerBound ?? 8
+            $0.consecutiveFailures = 0
+        }
     }
 
     private func updateProgress(_ exerciseId: String, _ body: (inout ExerciseProgress) -> Void) {
@@ -329,8 +332,11 @@ final class WorkoutStore: ObservableObject {
         }
     }
 
-    func setExerciseSkipped(_ sessionId: UUID, _ entryId: UUID, _ skipped: Bool) {
-        mutateEntry(sessionId, entryId) { $0.isSkipped = skipped }
+    func skipExercise(_ sessionId: UUID, _ entryId: UUID) {
+        mutateEntry(sessionId, entryId) { ex in
+            ex.isSkipped = true
+            ex.sets.removeAll { !$0.isCompleted }
+        }
     }
 
     func setExerciseNote(_ sessionId: UUID, _ entryId: UUID, _ note: String?) {
@@ -358,7 +364,7 @@ final class WorkoutStore: ObservableObject {
         guard let def = library[exerciseId], var session = session(sessionId),
               let index = session.exerciseIndex(entryId) else { return nil }
         let old = session.exercises[index]
-        if let outcome = old.progression { apply(outcome, accepted: false) }
+        if let outcome = old.progression { revert(outcome) }
         let p = progress(for: exerciseId)
         let range = def.defaultRepRange
         let reps = min(max(p.currentTargetReps, range.lowerBound), range.upperBound)
@@ -371,7 +377,7 @@ final class WorkoutStore: ObservableObject {
 
     func removeExercise(_ sessionId: UUID, _ entryId: UUID) {
         guard var session = session(sessionId), let index = session.exerciseIndex(entryId) else { return }
-        if let outcome = session.exercises[index].progression { apply(outcome, accepted: false) }
+        if let outcome = session.exercises[index].progression { revert(outcome) }
         session.exercises.remove(at: index)
         store(session)
     }
@@ -393,13 +399,20 @@ final class WorkoutStore: ObservableObject {
         mutate(sessionId) {
             $0.status = .completed
             $0.endedAt = now()
+            Self.pruneUncompleted(&$0)
         }
+    }
+
+    // 收尾清理不能走 mutateEntry：删掉未完成组后剩余组「全部完成」会误触发渐进（D3 飞鸟 2/4 不该渐进）
+    private static func pruneUncompleted(_ session: inout WorkoutSession) {
+        for i in session.exercises.indices { session.exercises[i].sets.removeAll { !$0.isCompleted } }
+        session.exercises.removeAll { $0.sets.isEmpty }
     }
 
     func discardSession(_ sessionId: UUID) {
         guard let session = session(sessionId) else { return }
         for ex in session.exercises {
-            if let outcome = ex.progression { apply(outcome, accepted: false) }
+            if let outcome = ex.progression { revert(outcome) }
             if let original = ex.decayFromWeightKg { updateProgress(ex.exerciseId) { $0.currentWeightKg = original } }
         }
         sessions.removeAll { $0.id == sessionId }
@@ -410,10 +423,11 @@ final class WorkoutStore: ObservableObject {
     func autoCloseStaleSessions() -> [WorkoutSession] {
         var closed: [WorkoutSession] = []
         for session in sessions where session.status == .inProgress {
-            guard now().timeIntervalSince(session.lastActivityAt) >= Self.staleSessionInterval else { continue }
+            guard now().timeIntervalSince(session.lastActivityAt) >= Limits.sessionAutoCloseInterval else { continue }
             var s = session
             s.status = .completed
             s.endedAt = s.lastActivityAt
+            Self.pruneUncompleted(&s)
             store(s)
             closed.append(s)
         }
@@ -449,7 +463,7 @@ final class WorkoutStore: ObservableObject {
 
     private func refreshProgression(_ session: inout WorkoutSession, _ index: Int) {
         var ex = session.exercises[index]
-        if ex.allWorkingCompleted {
+        if ex.allWorkingCompleted && !ex.isSkipped {
             guard ex.progression == nil, let target = ex.plannedWeightKg else { return }
             let result = ProgressionEngine.evaluate(
                 workingSets: ex.workingSets, targetWeightKg: target, targetReps: ex.plannedReps,
@@ -459,12 +473,14 @@ final class WorkoutStore: ObservableObject {
             let p = progress(for: ex.exerciseId)
             let outcome = ProgressionOutcome(
                 exerciseId: ex.exerciseId, kind: result.kind, fromWeightKg: p.currentWeightKg ?? target, fromReps: p.currentTargetReps, fromFailures: p.consecutiveFailures,
-                toWeightKg: result.weightKg, toReps: result.reps, toFailures: result.failures, reason: result.reason
+                toWeightKg: result.weightKg, toReps: result.reps, toFailures: result.failures,
+                keptFailures: result.kind == .suggestDeload ? p.consecutiveFailures + 1 : result.failures,
+                reason: result.reason
             )
             ex.progression = outcome
             apply(outcome, accepted: true)
         } else if let outcome = ex.progression {
-            apply(outcome, accepted: false)
+            revert(outcome)
             ex.progression = nil
         }
         session.exercises[index] = ex
@@ -474,7 +490,15 @@ final class WorkoutStore: ObservableObject {
         updateProgress(outcome.exerciseId) {
             $0.currentWeightKg = accepted ? outcome.toWeightKg : outcome.fromWeightKg
             $0.currentTargetReps = accepted ? outcome.toReps : outcome.fromReps
-            $0.consecutiveFailures = accepted ? outcome.toFailures : outcome.fromFailures
+            $0.consecutiveFailures = accepted ? outcome.toFailures : outcome.keptFailures
+        }
+    }
+
+    private func revert(_ outcome: ProgressionOutcome) {
+        updateProgress(outcome.exerciseId) {
+            $0.currentWeightKg = outcome.fromWeightKg
+            $0.currentTargetReps = outcome.fromReps
+            $0.consecutiveFailures = outcome.fromFailures
         }
     }
 
@@ -589,8 +613,15 @@ final class WorkoutStore: ObservableObject {
     }
 
     private func write<T: Encodable>(_ value: T, _ name: String) {
-        guard let raw = try? Self.encoder.encode(value) else { return }
-        try? raw.write(to: directory.appendingPathComponent(name), options: .atomic)
+        persist(value, to: directory.appendingPathComponent(name))
+    }
+
+    private func persist<T: Encodable>(_ value: T, to url: URL) {
+        do {
+            try Self.encoder.encode(value).write(to: url, options: .atomic)
+        } catch {
+            saveError = "保存失败，请检查设备存储空间"
+        }
     }
 
     private func saveLibrary() { write(library.state, "library.json") }
@@ -598,7 +629,6 @@ final class WorkoutStore: ObservableObject {
     private func saveProgress() { write(progress, "progress.json") }
 
     private func saveSession(_ session: WorkoutSession) {
-        guard let raw = try? Self.encoder.encode(session) else { return }
-        try? raw.write(to: sessionsDir.appendingPathComponent("\(session.id.uuidString).json"), options: .atomic)
+        persist(session, to: sessionsDir.appendingPathComponent("\(session.id.uuidString).json"))
     }
 }

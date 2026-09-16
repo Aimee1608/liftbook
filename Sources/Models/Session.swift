@@ -24,6 +24,7 @@ struct ProgressionOutcome: Codable, Hashable {
     var toWeightKg: Double
     var toReps: Int
     var toFailures: Int
+    var keptFailures: Int
     var reason: String
     var accepted = true
 }

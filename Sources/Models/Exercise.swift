@@ -14,11 +14,17 @@ struct ExerciseDefinition: Codable, Identifiable, Hashable {
     var imageAssetNames: [String]
     var videoURL: URL?
     var isArchived: Bool
+    var incrementKgOverride: Double?
+    var restSecondsOverride: Int?
+    var repRangeMinOverride: Int?
+    var repRangeMaxOverride: Int?
 
     init(id: String = UUID().uuidString, nameZh: String, nameEn: String? = nil, isBuiltin: Bool = false,
          primaryMuscles: [MuscleGroup], secondaryMuscles: [MuscleGroup] = [], equipment: EquipmentType,
          laterality: Laterality = .bilateral, isCompound: Bool = false, instructions: [String] = [],
-         imageAssetNames: [String] = [], videoURL: URL? = nil, isArchived: Bool = false) {
+         imageAssetNames: [String] = [], videoURL: URL? = nil, isArchived: Bool = false,
+         incrementKgOverride: Double? = nil, restSecondsOverride: Int? = nil,
+         repRangeMinOverride: Int? = nil, repRangeMaxOverride: Int? = nil) {
         self.id = id
         self.nameZh = nameZh
         self.nameEn = nameEn
@@ -32,6 +38,10 @@ struct ExerciseDefinition: Codable, Identifiable, Hashable {
         self.imageAssetNames = imageAssetNames
         self.videoURL = videoURL
         self.isArchived = isArchived
+        self.incrementKgOverride = incrementKgOverride
+        self.restSecondsOverride = restSecondsOverride
+        self.repRangeMinOverride = repRangeMinOverride
+        self.repRangeMaxOverride = repRangeMaxOverride
     }
 
     init(from decoder: Decoder) throws {
@@ -49,12 +59,20 @@ struct ExerciseDefinition: Codable, Identifiable, Hashable {
         imageAssetNames = try c.decodeIfPresent([String].self, forKey: .imageAssetNames) ?? []
         videoURL = try c.decodeIfPresent(URL.self, forKey: .videoURL)
         isArchived = try c.decodeIfPresent(Bool.self, forKey: .isArchived) ?? false
+        incrementKgOverride = try c.decodeIfPresent(Double.self, forKey: .incrementKgOverride)
+        restSecondsOverride = try c.decodeIfPresent(Int.self, forKey: .restSecondsOverride)
+        repRangeMinOverride = try c.decodeIfPresent(Int.self, forKey: .repRangeMinOverride)
+        repRangeMaxOverride = try c.decodeIfPresent(Int.self, forKey: .repRangeMaxOverride)
     }
 
     var primaryMuscle: MuscleGroup { primaryMuscles.first ?? .chest }
-    var defaultIncrementKg: Double { Increment.defaultKg(equipment: equipment, muscle: primaryMuscle) }
-    var defaultRestSeconds: Int { isCompound ? 150 : 90 }
-    var defaultRepRange: ClosedRange<Int> { isCompound && primaryMuscle.isLarge ? 8...12 : 10...15 }
+    var defaultIncrementKg: Double { incrementKgOverride ?? Increment.defaultKg(equipment: equipment, muscle: primaryMuscle) }
+    var defaultRestSeconds: Int { restSecondsOverride ?? (isCompound ? Limits.restCompound : Limits.restIsolation) }
+    var defaultRepRange: ClosedRange<Int> {
+        if let lo = repRangeMinOverride, let hi = repRangeMaxOverride, lo < hi { return lo...hi }
+        return isCompound && primaryMuscle.isLarge ? Limits.repRangeCompound : Limits.repRangeIsolation
+    }
+    var pinyinInitials: String { Pinyin.initials(nameZh) }
     var volumeMultiplier: Double { equipment == .dumbbell ? 2 : 1 }
     var isPerHand: Bool { equipment == .dumbbell }
 
@@ -63,7 +81,7 @@ struct ExerciseDefinition: Codable, Identifiable, Hashable {
         if q.isEmpty { return true }
         if nameZh.lowercased().contains(q) { return true }
         if let en = nameEn, en.lowercased().contains(q) { return true }
-        return false
+        return pinyinInitials.contains(q)
     }
 }
 
@@ -146,5 +164,18 @@ struct ExerciseLibrary {
         } else {
             state.archivedIds.remove(id)
         }
+    }
+}
+
+enum Pinyin {
+    private static var cache: [String: String] = [:]
+
+    static func initials(_ text: String) -> String {
+        if let hit = cache[text] { return hit }
+        let latin = text.applyingTransform(.mandarinToLatin, reverse: false) ?? text
+        let plain = latin.applyingTransform(.stripDiacritics, reverse: false) ?? latin
+        let result = plain.split(separator: " ").compactMap { $0.first.map(String.init) }.joined().lowercased()
+        cache[text] = result
+        return result
     }
 }
