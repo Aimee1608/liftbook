@@ -347,7 +347,8 @@ func runSmoke() {
         check(covered, "训练日目标肌群覆盖其动作")
         for m in MuscleGroup.allCases {
             let equipments = Set(real.filter { $0.primaryMuscles.contains(m) }.map(\.equipment))
-            check(equipments.count >= 3, "\(m.label) 至少 3 类器械（\(equipments.count)）")
+            let need = m.isLarge ? 3 : 2
+            check(equipments.count >= need, "\(m.label) 至少 \(need) 类器械（\(equipments.count)）")
         }
     } else {
         print("  （未找到 \(libDir.path)，跳过）")

@@ -1,0 +1,230 @@
+[
+  {
+    "id": "three-day-split",
+    "name": "三分化",
+    "summary": "每周 3 练，动作精简，适合新手起步",
+    "days": [
+      {
+        "name": "推",
+        "targetMuscles": ["chest", "shoulders", "triceps"],
+        "items": [
+          { "exerciseId": "barbell-bench-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "seated-dumbbell-press", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "dumbbell-lateral-raise", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "cable-pushdown", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "拉",
+        "targetMuscles": ["back", "shoulders", "biceps"],
+        "items": [
+          { "exerciseId": "pull-up", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "barbell-row", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "face-pull", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "barbell-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "腿",
+        "targetMuscles": ["quads", "hamstrings", "calves"],
+        "items": [
+          { "exerciseId": "barbell-back-squat", "targetSets": 4, "repRangeMin": 6, "repRangeMax": 10 },
+          { "exerciseId": "romanian-deadlift", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "leg-press", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "standing-calf-raise", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "four-day-split",
+    "name": "四分化",
+    "summary": "每周 4 练，部位更集中，适合有基础者",
+    "days": [
+      {
+        "name": "胸 + 三头",
+        "targetMuscles": ["chest", "triceps"],
+        "items": [
+          { "exerciseId": "barbell-bench-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "incline-dumbbell-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "close-grip-bench-press", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "pec-deck-fly", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "cable-pushdown", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "背 + 二头",
+        "targetMuscles": ["back", "biceps"],
+        "items": [
+          { "exerciseId": "pull-up", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "barbell-row", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "seated-cable-row", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "barbell-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "hammer-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "肩 + 腹",
+        "targetMuscles": ["shoulders", "abs"],
+        "items": [
+          { "exerciseId": "barbell-overhead-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "face-pull", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "dumbbell-lateral-raise", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "reverse-fly", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "hanging-leg-raise", "targetSets": 3, "repRangeMin": 12, "repRangeMax": 20 },
+          { "exerciseId": "cable-crunch", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "腿",
+        "targetMuscles": ["quads", "hamstrings", "calves"],
+        "items": [
+          { "exerciseId": "barbell-back-squat", "targetSets": 4, "repRangeMin": 6, "repRangeMax": 10 },
+          { "exerciseId": "romanian-deadlift", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "leg-press", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "lying-leg-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "standing-calf-raise", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "five-day-split",
+    "name": "五分化",
+    "summary": "每周 5 练，单部位容量大，适合进阶者",
+    "days": [
+      {
+        "name": "胸",
+        "targetMuscles": ["chest"],
+        "items": [
+          { "exerciseId": "barbell-bench-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "incline-dumbbell-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "chest-press-machine", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "cable-crossover", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "dumbbell-fly", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "背",
+        "targetMuscles": ["back"],
+        "items": [
+          { "exerciseId": "pull-up", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "barbell-row", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "lat-pulldown", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "one-arm-dumbbell-row", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "seated-cable-row", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "straight-arm-pulldown", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "肩",
+        "targetMuscles": ["shoulders"],
+        "items": [
+          { "exerciseId": "barbell-overhead-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "seated-dumbbell-press", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "face-pull", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "dumbbell-lateral-raise", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "reverse-fly", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "腿",
+        "targetMuscles": ["quads", "hamstrings", "calves"],
+        "items": [
+          { "exerciseId": "barbell-back-squat", "targetSets": 4, "repRangeMin": 6, "repRangeMax": 10 },
+          { "exerciseId": "romanian-deadlift", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "hack-squat", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "leg-extension", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "lying-leg-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "standing-calf-raise", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "手臂",
+        "targetMuscles": ["biceps", "triceps"],
+        "items": [
+          { "exerciseId": "close-grip-bench-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "chin-up", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "barbell-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "cable-pushdown", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "hammer-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "overhead-cable-extension", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ppl",
+    "name": "推拉腿",
+    "summary": "可跑 6 天双循环，容量大，适合有基础者",
+    "days": [
+      {
+        "name": "推",
+        "targetMuscles": ["chest", "shoulders", "triceps"],
+        "items": [
+          { "exerciseId": "barbell-bench-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "barbell-overhead-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "incline-dumbbell-press", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "dumbbell-lateral-raise", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "cable-crossover", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "cable-pushdown", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "拉",
+        "targetMuscles": ["back", "shoulders", "biceps"],
+        "items": [
+          { "exerciseId": "pull-up", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "barbell-row", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "seated-cable-row", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "face-pull", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "barbell-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "hammer-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "腿",
+        "targetMuscles": ["quads", "hamstrings", "calves"],
+        "items": [
+          { "exerciseId": "barbell-back-squat", "targetSets": 4, "repRangeMin": 6, "repRangeMax": 10 },
+          { "exerciseId": "romanian-deadlift", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "leg-press", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "leg-extension", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "seated-leg-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "standing-calf-raise", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "upper-lower",
+    "name": "上下肢",
+    "summary": "每周 4 练，上下肢交替，恢复更充裕",
+    "days": [
+      {
+        "name": "上肢",
+        "targetMuscles": ["chest", "back", "shoulders", "biceps", "triceps"],
+        "items": [
+          { "exerciseId": "barbell-bench-press", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "barbell-row", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "seated-dumbbell-press", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "lat-pulldown", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "barbell-curl", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "cable-pushdown", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      },
+      {
+        "name": "下肢",
+        "targetMuscles": ["quads", "hamstrings", "glutes", "calves"],
+        "items": [
+          { "exerciseId": "barbell-back-squat", "targetSets": 4, "repRangeMin": 6, "repRangeMax": 10 },
+          { "exerciseId": "romanian-deadlift", "targetSets": 4, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "bulgarian-split-squat", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "hip-thrust", "targetSets": 3, "repRangeMin": 8, "repRangeMax": 12 },
+          { "exerciseId": "leg-extension", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 },
+          { "exerciseId": "standing-calf-raise", "targetSets": 3, "repRangeMin": 10, "repRangeMax": 15 }
+        ]
+      }
+    ]
+  }
+]
