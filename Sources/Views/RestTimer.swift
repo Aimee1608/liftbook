@@ -55,6 +55,10 @@ enum NotificationManager {
     static let restId = "rest-end"
 
     static func requestIfNeeded() {
+        #if DEBUG
+        // 演示模式（截图/录屏）不能弹系统权限框，会盖住画面
+        if CommandLine.arguments.contains("-demoData") { return }
+        #endif
         UNUserNotificationCenter.current().getNotificationSettings { s in
             guard s.authorizationStatus == .notDetermined else { return }
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in }

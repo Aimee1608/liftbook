@@ -120,6 +120,59 @@ xcrun simctl delete $SIM
 
 ---
 
+## 四·二、App 预览录屏
+
+App 预览是**可选**的（截图才是必需），但做了转化率更好。硬要求：**15~30 秒**、
+只能是 app 内画面、分辨率跟截图一样分档。
+
+脚本在 `scripts/shots/PreviewVideoTests.swift`（同样不进 target，用时复制到 `UITests/`），
+录制和裁剪分两步：
+
+```bash
+SIM=<模拟器UDID>
+cp scripts/shots/PreviewVideoTests.swift UITests/ && xcodegen generate
+# 先预编译,否则 xcodebuild 的准备时间会被录进去
+xcodebuild -project Liftbook.xcodeproj -scheme Liftbook -destination "id=$SIM" \
+  -derivedDataPath /tmp/liftbookbuild build-for-testing
+xcrun simctl io $SIM recordVideo --codec h264 --force /tmp/preview.mov & echo $! > /tmp/recpid
+sleep 1.5
+xcodebuild -project Liftbook.xcodeproj -scheme Liftbook -destination "id=$SIM" \
+  -derivedDataPath /tmp/liftbookbuild \
+  -only-testing:LiftbookUITests/PreviewVideoTests test-without-building
+kill -INT $(cat /tmp/recpid)
+rm UITests/PreviewVideoTests.swift && xcodegen generate
+
+# 看时长和分辨率
+swiftc -O scripts/shots/trim_video.swift -o /tmp/trimvid
+/tmp/trimvid /tmp/preview.mov
+```
+
+录出来一般 45~65 秒，超了 30 秒上限，要剪掉中间的空转。`cut_video` 按若干
+`<起点> <时长>` 把片段拼成一条（passthrough，不重编码、不改分辨率），
+第三个参数给了目录就顺便按 1.5 秒抽帧，用来核对剪的位置：
+
+```bash
+swiftc -O scripts/shots/cut_video.swift -o /tmp/cutvid
+/tmp/cutvid /tmp/preview.mov /tmp/out.mov /tmp/frames -- 7.4 3.5 12.2 7.0 20.5 8.5 32.8 7.5 43.0 3.0
+```
+
+**片段起点每台设备都不一样**，因为开头那段安装 + 启动的耗时不同（6.9" 约 7s，
+6.5" 约 21s，iPad 约 18s）。做法是先整段抽帧看一遍，找到首页出现的时刻当锚点，
+再按 1.0.0 这组相对偏移（+0.0 / +4.8 / +13.1 / +25.4 / +35.6，时长 3.5 / 7.0 / 8.5 / 7.0 / 3.0）平移。
+
+五段分别是：首页今日计划 → 执行页打卡与休息计时 → 次数面板改数字 → 结束训练与下次建议 → 历史日历。
+
+三个坑：
+
+- **XCUITest 的每步操作都有查找元素的开销**，实际录出来比脚本里 sleep 的总和长不少，
+  所以是「录长了再裁」，不是掐着 30 秒写脚本。
+- **录屏前必须确保不会弹系统通知权限框**，否则会盖住画面。`-demoData` 启动参数下
+  `NotificationManager.requestIfNeeded()` 直接跳过申请（见 `RestTimer.swift`）。
+- 6.5" 那台是**临时建的模拟器**，录完记得 `xcrun simctl delete`，否则下次 `simctl list`
+  里会攒一堆同名设备。
+
+---
+
 ## 五、审核要当心的
 
 | Guideline | 现象 | 修法 |
