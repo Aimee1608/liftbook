@@ -1,0 +1,846 @@
+{
+ "air-bike": [
+  {
+   "file": "air-bike-1.svg",
+   "commons": "File:Air bike 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Air_bike_1.svg"
+  },
+  {
+   "file": "air-bike-2.svg",
+   "commons": "File:Air bike 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Air_bike_2.svg"
+  }
+ ],
+ "alternating-dumbbell-curl": [
+  {
+   "file": "alternating-dumbbell-curl-1.svg",
+   "commons": "File:Alternating bicep curl with dumbbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Alternating_bicep_curl_with_dumbbell_1.svg"
+  },
+  {
+   "file": "alternating-dumbbell-curl-2.svg",
+   "commons": "File:Alternating bicep curl with dumbbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Alternating_bicep_curl_with_dumbbell_2.svg"
+  }
+ ],
+ "barbell-back-squat": [
+  {
+   "file": "barbell-back-squat-1.svg",
+   "commons": "File:Narrow stance squat with barbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Narrow_stance_squat_with_barbell_1.svg"
+  }
+ ],
+ "barbell-bench-press": [
+  {
+   "file": "barbell-bench-press-1.svg",
+   "commons": "File:Bench press 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bench_press_1.svg"
+  },
+  {
+   "file": "barbell-bench-press-2.svg",
+   "commons": "File:Bench press 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bench_press_2.svg"
+  }
+ ],
+ "barbell-curl": [
+  {
+   "file": "barbell-curl-1.svg",
+   "commons": "File:Bicep curls with barbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bicep_curls_with_barbell_1.svg"
+  },
+  {
+   "file": "barbell-curl-2.svg",
+   "commons": "File:Bicep curls with barbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bicep_curls_with_barbell_2.svg"
+  }
+ ],
+ "barbell-overhead-press": [
+  {
+   "file": "barbell-overhead-press-1.svg",
+   "commons": "File:Barbell shoulder press 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Barbell_shoulder_press_1.svg"
+  },
+  {
+   "file": "barbell-overhead-press-2.svg",
+   "commons": "File:Barbell shoulder press 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Barbell_shoulder_press_2.svg"
+  }
+ ],
+ "bench-dip": [
+  {
+   "file": "bench-dip-1.svg",
+   "commons": "File:Bench dips 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bench_dips_1.svg"
+  },
+  {
+   "file": "bench-dip-2.svg",
+   "commons": "File:Bench dips 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bench_dips_2.svg"
+  }
+ ],
+ "bent-knee-hip-raise": [
+  {
+   "file": "bent-knee-hip-raise-1.svg",
+   "commons": "File:Bent knee hip raise 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bent_knee_hip_raise_1.svg"
+  },
+  {
+   "file": "bent-knee-hip-raise-2.svg",
+   "commons": "File:Bent knee hip raise 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bent_knee_hip_raise_2.svg"
+  }
+ ],
+ "cable-crossover": [
+  {
+   "file": "cable-crossover-1.svg",
+   "commons": "File:Cable crossover 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Cable_crossover_1.svg"
+  },
+  {
+   "file": "cable-crossover-2.svg",
+   "commons": "File:Cable crossover 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Cable_crossover_2.svg"
+  }
+ ],
+ "cable-crunch": [
+  {
+   "file": "cable-crunch-1.svg",
+   "commons": "File:Seated ab crunch with cable 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_ab_crunch_with_cable_1.svg"
+  },
+  {
+   "file": "cable-crunch-2.svg",
+   "commons": "File:Seated ab crunch with cable 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_ab_crunch_with_cable_2.svg"
+  }
+ ],
+ "cable-curl": [
+  {
+   "file": "cable-curl-1.svg",
+   "commons": "File:Standing biceps curl with cable 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Standing_biceps_curl_with_cable_1.svg"
+  },
+  {
+   "file": "cable-curl-2.svg",
+   "commons": "File:Standing biceps curl with cable 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Standing_biceps_curl_with_cable_2.svg"
+  }
+ ],
+ "cable-kickback": [
+  {
+   "file": "cable-kickback-1.svg",
+   "commons": "File:One legged cable kickback 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:One_legged_cable_kickback_1.svg"
+  },
+  {
+   "file": "cable-kickback-2.svg",
+   "commons": "File:One legged cable kickback 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:One_legged_cable_kickback_2.svg"
+  }
+ ],
+ "cable-pushdown": [
+  {
+   "file": "cable-pushdown-1.svg",
+   "commons": "File:Triceps pushdown with cable 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Triceps_pushdown_with_cable_1.svg"
+  },
+  {
+   "file": "cable-pushdown-2.svg",
+   "commons": "File:Triceps pushdown with cable 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Triceps_pushdown_with_cable_2.svg"
+  }
+ ],
+ "chest-press-machine": [
+  {
+   "file": "chest-press-machine-1.svg",
+   "commons": "File:Machine bench press 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Machine_bench_press_1.svg"
+  },
+  {
+   "file": "chest-press-machine-2.svg",
+   "commons": "File:Machine bench press 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Machine_bench_press_2.svg"
+  }
+ ],
+ "chin-up": [
+  {
+   "file": "chin-up-1.svg",
+   "commons": "File:Chin ups 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Chin_ups_1.svg"
+  },
+  {
+   "file": "chin-up-2.svg",
+   "commons": "File:Chin ups 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Chin_ups_2.svg"
+  }
+ ],
+ "close-grip-bench-press": [
+  {
+   "file": "close-grip-bench-press-1.svg",
+   "commons": "File:Close grip barbell bench press 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Close_grip_barbell_bench_press_1.svg"
+  },
+  {
+   "file": "close-grip-bench-press-2.svg",
+   "commons": "File:Close grip barbell bench press 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Close_grip_barbell_bench_press_2.svg"
+  }
+ ],
+ "crunch": [
+  {
+   "file": "crunch-1.svg",
+   "commons": "File:Crunches 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Crunches_1.svg"
+  },
+  {
+   "file": "crunch-2.svg",
+   "commons": "File:Crunches 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Crunches_2.svg"
+  }
+ ],
+ "deadlift": [
+  {
+   "file": "deadlift-1.svg",
+   "commons": "File:Barbell dead lifts 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Barbell_dead_lifts_1.svg"
+  },
+  {
+   "file": "deadlift-2.svg",
+   "commons": "File:Barbell dead lifts 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Barbell_dead_lifts_2.svg"
+  }
+ ],
+ "dips": [
+  {
+   "file": "dips-1.svg",
+   "commons": "File:Chest dips 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Chest_dips_1.svg"
+  },
+  {
+   "file": "dips-2.svg",
+   "commons": "File:Chest dips 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Chest_dips_2.svg"
+  }
+ ],
+ "dumbbell-fly": [
+  {
+   "file": "dumbbell-fly-1.svg",
+   "commons": "File:Dumbbell flys 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dumbbell_flys_1.svg"
+  },
+  {
+   "file": "dumbbell-fly-2.svg",
+   "commons": "File:Dumbbell flys 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dumbbell_flys_2.svg"
+  }
+ ],
+ "dumbbell-kickback": [
+  {
+   "file": "dumbbell-kickback-1.svg",
+   "commons": "File:Triceps kickback with dumbbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Triceps_kickback_with_dumbbell_1.svg"
+  },
+  {
+   "file": "dumbbell-kickback-2.svg",
+   "commons": "File:Triceps kickback with dumbbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Triceps_kickback_with_dumbbell_2.svg"
+  }
+ ],
+ "dumbbell-lateral-raise": [
+  {
+   "file": "dumbbell-lateral-raise-1.svg",
+   "commons": "File:Lateral dumbbell raises 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lateral_dumbbell_raises_1.svg"
+  },
+  {
+   "file": "dumbbell-lateral-raise-2.svg",
+   "commons": "File:Lateral dumbbell raises 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lateral_dumbbell_raises_2.svg"
+  }
+ ],
+ "dumbbell-shrug": [
+  {
+   "file": "dumbbell-shrug-1.svg",
+   "commons": "File:Shoulder shrugs 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Shoulder_shrugs_1.svg"
+  },
+  {
+   "file": "dumbbell-shrug-2.svg",
+   "commons": "File:Shoulder shrugs 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Shoulder_shrugs_2.svg"
+  }
+ ],
+ "dumbbell-side-bend": [
+  {
+   "file": "dumbbell-side-bend-1.svg",
+   "commons": "File:Side bend with dumbbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Side_bend_with_dumbbell_1.svg"
+  },
+  {
+   "file": "dumbbell-side-bend-2.svg",
+   "commons": "File:Side bend with dumbbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Side_bend_with_dumbbell_2.svg"
+  }
+ ],
+ "dumbbell-stiff-leg-deadlift": [
+  {
+   "file": "dumbbell-stiff-leg-deadlift-1.svg",
+   "commons": "File:Dumbbell dead lifts 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dumbbell_dead_lifts_1.svg"
+  },
+  {
+   "file": "dumbbell-stiff-leg-deadlift-2.svg",
+   "commons": "File:Dumbbell dead lifts 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dumbbell_dead_lifts_2.svg"
+  }
+ ],
+ "flat-dumbbell-press": [
+  {
+   "file": "flat-dumbbell-press-1.svg",
+   "commons": "File:Bench press dumbbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bench_press_dumbbell_1.svg"
+  },
+  {
+   "file": "flat-dumbbell-press-2.svg",
+   "commons": "File:Bench press dumbbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bench_press_dumbbell_2.svg"
+  }
+ ],
+ "front-dumbbell-raise": [
+  {
+   "file": "front-dumbbell-raise-1.svg",
+   "commons": "File:Front dumbbell raise 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Front_dumbbell_raise_1.svg"
+  },
+  {
+   "file": "front-dumbbell-raise-2.svg",
+   "commons": "File:Front dumbbell raise 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Front_dumbbell_raise_2.svg"
+  }
+ ],
+ "front-squat": [
+  {
+   "file": "front-squat-1.svg",
+   "commons": "File:Front squat with barbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Front_squat_with_barbell_1.svg"
+  },
+  {
+   "file": "front-squat-2.svg",
+   "commons": "File:Front squat with barbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Front_squat_with_barbell_2.svg"
+  }
+ ],
+ "glute-bridge": [
+  {
+   "file": "glute-bridge-1.svg",
+   "commons": "File:Bridging 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bridging_1.svg"
+  },
+  {
+   "file": "glute-bridge-2.svg",
+   "commons": "File:Bridging 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bridging_2.svg"
+  }
+ ],
+ "good-morning": [
+  {
+   "file": "good-morning-1.svg",
+   "commons": "File:Barbell good mornings 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Barbell_good_mornings_1.svg"
+  },
+  {
+   "file": "good-morning-2.svg",
+   "commons": "File:Barbell good mornings 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Barbell_good_mornings_2.svg"
+  }
+ ],
+ "hack-squat": [
+  {
+   "file": "hack-squat-1.svg",
+   "commons": "File:Hack squat machine 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Hack_squat_machine_1.svg"
+  }
+ ],
+ "hammer-curl": [
+  {
+   "file": "hammer-curl-1.svg",
+   "commons": "File:Bicep hammer curl with dumbbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bicep_hammer_curl_with_dumbbell_1.svg"
+  },
+  {
+   "file": "hammer-curl-2.svg",
+   "commons": "File:Bicep hammer curl with dumbbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Bicep_hammer_curl_with_dumbbell_2.svg"
+  }
+ ],
+ "hip-abduction-machine": [
+  {
+   "file": "hip-abduction-machine-1.svg",
+   "commons": "File:Thigh abductor 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Thigh_abductor_1.svg"
+  }
+ ],
+ "hyperextension": [
+  {
+   "file": "hyperextension-1.svg",
+   "commons": "File:Hyperextensions 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Hyperextensions_1.svg"
+  },
+  {
+   "file": "hyperextension-2.svg",
+   "commons": "File:Hyperextensions 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Hyperextensions_2.svg"
+  }
+ ],
+ "incline-dumbbell-press": [
+  {
+   "file": "incline-dumbbell-press-1.svg",
+   "commons": "File:Incline dumbbell press 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Incline_dumbbell_press_1.svg"
+  },
+  {
+   "file": "incline-dumbbell-press-2.svg",
+   "commons": "File:Incline dumbbell press 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Incline_dumbbell_press_2.svg"
+  }
+ ],
+ "inverted-row": [
+  {
+   "file": "inverted-row-1.svg",
+   "commons": "File:Body row 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Body_row_1.svg"
+  },
+  {
+   "file": "inverted-row-2.svg",
+   "commons": "File:Body row 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Body_row_2.svg"
+  }
+ ],
+ "kneeling-barbell-rollout": [
+  {
+   "file": "kneeling-barbell-rollout-1.svg",
+   "commons": "File:Ab rollout on knees with barbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Ab_rollout_on_knees_with_barbell_1.svg"
+  },
+  {
+   "file": "kneeling-barbell-rollout-2.svg",
+   "commons": "File:Ab rollout on knees with barbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Ab_rollout_on_knees_with_barbell_2.svg"
+  }
+ ],
+ "lat-pulldown": [
+  {
+   "file": "lat-pulldown-1.svg",
+   "commons": "File:Wide grip lat pull down 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Wide_grip_lat_pull_down_1.svg"
+  },
+  {
+   "file": "lat-pulldown-2.svg",
+   "commons": "File:Wide grip lat pull down 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Wide_grip_lat_pull_down_2.svg"
+  }
+ ],
+ "leg-extension": [
+  {
+   "file": "leg-extension-1.svg",
+   "commons": "File:Leg extensions 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Leg_extensions_1.svg"
+  },
+  {
+   "file": "leg-extension-2.svg",
+   "commons": "File:Leg extensions 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Leg_extensions_2.svg"
+  }
+ ],
+ "leg-press": [
+  {
+   "file": "leg-press-1.svg",
+   "commons": "Leg-press-1 (Everkinetic, via opentraining-exercises)",
+   "page": "https://github.com/chaosbastler/opentraining-exercises"
+  },
+  {
+   "file": "leg-press-2.svg",
+   "commons": "Leg-press-2 (Everkinetic, via opentraining-exercises)",
+   "page": "https://github.com/chaosbastler/opentraining-exercises"
+  }
+ ],
+ "lying-leg-curl": [
+  {
+   "file": "lying-leg-curl-1.svg",
+   "commons": "File:Lying leg curl machine 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lying_leg_curl_machine_1.svg"
+  },
+  {
+   "file": "lying-leg-curl-2.svg",
+   "commons": "File:Lying leg curl machine 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lying_leg_curl_machine_2.svg"
+  }
+ ],
+ "lying-leg-raise": [
+  {
+   "file": "lying-leg-raise-1.svg",
+   "commons": "File:Flat bench leg raises 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Flat_bench_leg_raises_1.svg"
+  },
+  {
+   "file": "lying-leg-raise-2.svg",
+   "commons": "File:Flat bench leg raises 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Flat_bench_leg_raises_2.svg"
+  }
+ ],
+ "lying-triceps-extension": [
+  {
+   "file": "lying-triceps-extension-1.svg",
+   "commons": "File:Lying triceps extension with dumbbells 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lying_triceps_extension_with_dumbbells_1.svg"
+  },
+  {
+   "file": "lying-triceps-extension-2.svg",
+   "commons": "File:Lying triceps extension with dumbbells 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lying_triceps_extension_with_dumbbells_2.svg"
+  }
+ ],
+ "pec-deck-fly": [
+  {
+   "file": "pec-deck-fly-1.svg",
+   "commons": "File:Butterfly machine 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Butterfly_machine_1.svg"
+  },
+  {
+   "file": "pec-deck-fly-2.svg",
+   "commons": "File:Butterfly machine 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Butterfly_machine_2.svg"
+  }
+ ],
+ "plie-squat": [
+  {
+   "file": "plie-squat-1.svg",
+   "commons": "File:Pile squat with dumbbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Pile_squat_with_dumbbell_1.svg"
+  },
+  {
+   "file": "plie-squat-2.svg",
+   "commons": "File:Pile squat with dumbbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Pile_squat_with_dumbbell_2.svg"
+  }
+ ],
+ "preacher-curl": [
+  {
+   "file": "preacher-curl-1.svg",
+   "commons": "File:Preacher curl with barbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Preacher_curl_with_barbell_1.svg"
+  },
+  {
+   "file": "preacher-curl-2.svg",
+   "commons": "File:Preacher curl with barbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Preacher_curl_with_barbell_2.svg"
+  }
+ ],
+ "pull-up": [
+  {
+   "file": "pull-up-1.svg",
+   "commons": "File:Pull ups 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Pull_ups_1.svg"
+  },
+  {
+   "file": "pull-up-2.svg",
+   "commons": "File:Pull ups 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Pull_ups_2.svg"
+  }
+ ],
+ "push-up": [
+  {
+   "file": "push-up-1.svg",
+   "commons": "File:Push ups 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Push_ups_1.svg"
+  },
+  {
+   "file": "push-up-2.svg",
+   "commons": "File:Push ups 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Push_ups_2.svg"
+  }
+ ],
+ "reverse-fly": [
+  {
+   "file": "reverse-fly-1.svg",
+   "commons": "File:Lying rear lateral raise 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lying_rear_lateral_raise_1.svg"
+  },
+  {
+   "file": "reverse-fly-2.svg",
+   "commons": "File:Lying rear lateral raise 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Lying_rear_lateral_raise_2.svg"
+  }
+ ],
+ "reverse-grip-barbell-row": [
+  {
+   "file": "reverse-grip-barbell-row-1.svg",
+   "commons": "File:Reverse grips bent over barbell rows 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Reverse_grips_bent_over_barbell_rows_1.svg"
+  },
+  {
+   "file": "reverse-grip-barbell-row-2.svg",
+   "commons": "File:Reverse grips bent over barbell rows 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Reverse_grips_bent_over_barbell_rows_2.svg"
+  }
+ ],
+ "reverse-lunge": [
+  {
+   "file": "reverse-lunge-1.svg",
+   "commons": "File:Rear lunges with barbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Rear_lunges_with_barbell_2.svg"
+  }
+ ],
+ "romanian-deadlift": [
+  {
+   "file": "romanian-deadlift-1.svg",
+   "commons": "File:Romanian dead lift 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Romanian_dead_lift_1.svg"
+  },
+  {
+   "file": "romanian-deadlift-2.svg",
+   "commons": "File:Romanian dead lift 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Romanian_dead_lift_2.svg"
+  }
+ ],
+ "seated-cable-row": [
+  {
+   "file": "seated-cable-row-1.svg",
+   "commons": "File:Seated cable rows 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_cable_rows_1.svg"
+  },
+  {
+   "file": "seated-cable-row-2.svg",
+   "commons": "File:Seated cable rows 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_cable_rows_2.svg"
+  }
+ ],
+ "seated-calf-raise": [
+  {
+   "file": "seated-calf-raise-1.svg",
+   "commons": "File:Seated calf raise using machine 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_calf_raise_using_machine_1.svg"
+  },
+  {
+   "file": "seated-calf-raise-2.svg",
+   "commons": "File:Seated calf raise using machine 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_calf_raise_using_machine_2.svg"
+  }
+ ],
+ "seated-dumbbell-press": [
+  {
+   "file": "seated-dumbbell-press-1.svg",
+   "commons": "File:Dumbbell shoulder press 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dumbbell_shoulder_press_1.svg"
+  },
+  {
+   "file": "seated-dumbbell-press-2.svg",
+   "commons": "File:Dumbbell shoulder press 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dumbbell_shoulder_press_2.svg"
+  }
+ ],
+ "seated-leg-curl": [
+  {
+   "file": "seated-leg-curl-1.svg",
+   "commons": "File:Seated leg curl 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_leg_curl_1.svg"
+  },
+  {
+   "file": "seated-leg-curl-2.svg",
+   "commons": "File:Seated leg curl 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_leg_curl_2.svg"
+  }
+ ],
+ "shoulder-press-machine": [
+  {
+   "file": "shoulder-press-machine-1.svg",
+   "commons": "File:Seated shoulder press machine 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_shoulder_press_machine_1.svg"
+  },
+  {
+   "file": "shoulder-press-machine-2.svg",
+   "commons": "File:Seated shoulder press machine 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_shoulder_press_machine_2.svg"
+  }
+ ],
+ "side-plank": [
+  {
+   "file": "side-plank-1.svg",
+   "commons": "File:Side plank 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Side_plank_1.svg"
+  },
+  {
+   "file": "side-plank-2.svg",
+   "commons": "File:Side plank 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Side_plank_2.svg"
+  }
+ ],
+ "standing-calf-raise": [
+  {
+   "file": "standing-calf-raise-1.svg",
+   "commons": "File:Standing calf raises using machine 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Standing_calf_raises_using_machine_1.svg"
+  },
+  {
+   "file": "standing-calf-raise-2.svg",
+   "commons": "File:Standing calf raises using machine 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Standing_calf_raises_using_machine_2.svg"
+  }
+ ],
+ "standing-leg-curl": [
+  {
+   "file": "standing-leg-curl-1.svg",
+   "commons": "File:Standing leg curls 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Standing_leg_curls_1.svg"
+  },
+  {
+   "file": "standing-leg-curl-2.svg",
+   "commons": "File:Standing leg curls 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Standing_leg_curls_2.svg"
+  }
+ ],
+ "step-up": [
+  {
+   "file": "step-up-1.svg",
+   "commons": "File:Step ups with dumbbells 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Step_ups_with_dumbbells_1.svg"
+  },
+  {
+   "file": "step-up-2.svg",
+   "commons": "File:Step ups with dumbbells 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Step_ups_with_dumbbells_2.svg"
+  }
+ ],
+ "straight-arm-pulldown": [
+  {
+   "file": "straight-arm-pulldown-1.svg",
+   "commons": "File:Straight arm push down 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Straight_arm_push_down_1.svg"
+  },
+  {
+   "file": "straight-arm-pulldown-2.svg",
+   "commons": "File:Straight arm push down 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Straight_arm_push_down_2.svg"
+  }
+ ],
+ "t-bar-row": [
+  {
+   "file": "t-bar-row-1.svg",
+   "commons": "File:T bar rows 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:T_bar_rows_1.svg"
+  },
+  {
+   "file": "t-bar-row-2.svg",
+   "commons": "File:T bar rows 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:T_bar_rows_2.svg"
+  }
+ ],
+ "underhand-lat-pulldown": [
+  {
+   "file": "underhand-lat-pulldown-1.svg",
+   "commons": "File:Underhand pull down 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Underhand_pull_down_1.svg"
+  },
+  {
+   "file": "underhand-lat-pulldown-2.svg",
+   "commons": "File:Underhand pull down 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Underhand_pull_down_2.svg"
+  }
+ ],
+ "walking-lunge": [
+  {
+   "file": "walking-lunge-1.svg",
+   "commons": "File:Walking lunges 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Walking_lunges_1.svg"
+  },
+  {
+   "file": "walking-lunge-2.svg",
+   "commons": "File:Walking lunges 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Walking_lunges_2.svg"
+  }
+ ],
+ "zottman-curl": [
+  {
+   "file": "zottman-curl-1.svg",
+   "commons": "File:Zottman curl with dumbbells 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Zottman_curl_with_dumbbells_1.svg"
+  },
+  {
+   "file": "zottman-curl-2.svg",
+   "commons": "File:Zottman curl with dumbbells 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Zottman_curl_with_dumbbells_2.svg"
+  }
+ ],
+ "dumbbell-upright-row": [
+  {
+   "file": "dumbbell-upright-row-1.svg",
+   "commons": "File:Dumbbell upright rows 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dumbbell_upright_rows_1.svg"
+  },
+  {
+   "file": "dumbbell-upright-row-2.svg",
+   "commons": "File:Dumbbell upright rows 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Dumbbell_upright_rows_2.svg"
+  }
+ ],
+ "barbell-rear-delt-row": [
+  {
+   "file": "barbell-rear-delt-row-1.svg",
+   "commons": "File:Rear deltoid row barbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Rear_deltoid_row_barbell_1.svg"
+  },
+  {
+   "file": "barbell-rear-delt-row-2.svg",
+   "commons": "File:Rear deltoid row barbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Rear_deltoid_row_barbell_2.svg"
+  }
+ ],
+ "seated-overhead-extension": [
+  {
+   "file": "seated-overhead-extension-1.svg",
+   "commons": "File:Seated overhead triceps extension with barbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_overhead_triceps_extension_with_barbell_1.svg"
+  },
+  {
+   "file": "seated-overhead-extension-2.svg",
+   "commons": "File:Seated overhead triceps extension with barbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_overhead_triceps_extension_with_barbell_2.svg"
+  }
+ ],
+ "dumbbell-squat": [
+  {
+   "file": "dumbbell-squat-1.svg",
+   "commons": "File:Squats using dumbbells 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Squats_using_dumbbells_1.svg"
+  },
+  {
+   "file": "dumbbell-squat-2.svg",
+   "commons": "File:Squats using dumbbells 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Squats_using_dumbbells_2.svg"
+  }
+ ],
+ "seated-single-leg-calf-raise": [
+  {
+   "file": "seated-single-leg-calf-raise-1.svg",
+   "commons": "File:Seated one leg calf raise with dumbbell 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_one_leg_calf_raise_with_dumbbell_1.svg"
+  },
+  {
+   "file": "seated-single-leg-calf-raise-2.svg",
+   "commons": "File:Seated one leg calf raise with dumbbell 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Seated_one_leg_calf_raise_with_dumbbell_2.svg"
+  }
+ ],
+ "plate-curl": [
+  {
+   "file": "plate-curl-1.svg",
+   "commons": "File:Reverse plate curls with weight 1.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Reverse_plate_curls_with_weight_1.svg"
+  },
+  {
+   "file": "plate-curl-2.svg",
+   "commons": "File:Reverse plate curls with weight 2.svg",
+   "page": "https://commons.wikimedia.org/wiki/File:Reverse_plate_curls_with_weight_2.svg"
+  }
+ ]
+}

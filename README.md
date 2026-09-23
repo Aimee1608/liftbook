@@ -58,7 +58,21 @@ Sources/
   Models/     Enums / Exercise / Plan / Progress / Session / Progression / Scheduler / WorkoutStore
   Views/      SwiftUI 界面
   App/        app 入口
-  Resources/  Library/ 内置动作库(72 个自写动作)与 5 套分化模板
+  Resources/  Library/ 内置动作库与 5 套分化模板
+              Assets.xcassets/Exercises/ 动作演示图
 scripts/
   main.swift  核心逻辑冒烟测试
+  artwork/    演示图流水线(下载、渲染、装配),见该目录下 README
 ```
+
+## 动作演示图
+
+72 个动作各配一组起始 / 结束示意图，改编自 [Everkinetic](https://commons.wikimedia.org/wiki/Category:Weight_training_diagrams)
+的插画，依据 **CC BY-SA 3.0** 使用。我们把原图渲染成只保留透明通道的图片，在 app 内按主题着色。
+
+**依据相同方式共享条款，`Sources/Resources/Assets.xcassets/Exercises/` 与
+`scripts/artwork/svg/` 下的图片同样以 CC BY-SA 3.0 发布**，详见
+[图片许可说明](Sources/Resources/Assets.xcassets/Exercises/LICENSE.md)。
+本仓库的 Swift 源代码不受该许可影响。
+
+动作名称、肌群与器械归类、动作要点文字均为原创。

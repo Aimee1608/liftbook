@@ -160,12 +160,7 @@ struct ExerciseRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: "dumbbell")
-                .font(.system(size: 18))
-                .foregroundStyle(Theme.secondary)
-                .frame(width: 40, height: 40)
-                .background(Theme.elevated)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            ExerciseThumbnail(exerciseId: exercise.id)
             VStack(alignment: .leading, spacing: 3) {
                 Text(exercise.nameZh).font(.system(size: 16, weight: .medium)).lineLimit(1)
                 Text([exercise.nameEn, exercise.primaryMuscles.map(\.label).joined(separator: "/"), exercise.equipment.label].compactMap { $0 }.joined(separator: " · "))

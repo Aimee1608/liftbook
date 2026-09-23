@@ -20,20 +20,18 @@ struct ExerciseDetailView: View {
             let history = store.history(of: exerciseId)
             ScrollView {
                 VStack(spacing: 12) {
-                    HStack(spacing: 12) {
-                        Image(systemName: "dumbbell").font(.system(size: 22)).foregroundStyle(Theme.secondary)
-                            .frame(width: 56, height: 56).background(Theme.elevated).clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
-                        VStack(alignment: .leading, spacing: 6) {
-                            WrapLayout(spacing: 6) {
-                                ForEach(ex.primaryMuscles, id: \.self) { Chip(text: $0.label, on: true) }
-                                if !ex.secondaryMuscles.isEmpty { Chip(text: ex.secondaryMuscles.map(\.label).joined(separator: " · ")) }
-                                Chip(text: ex.equipment.label)
-                                Chip(text: ex.laterality.label)
-                            }
-                            if let en = ex.nameEn { Text(en).font(.system(size: 12)).foregroundStyle(Theme.tertiary) }
-                        }
+                    ExerciseArtworkView(exerciseId: ex.id)
+                    WrapLayout(spacing: 6) {
+                        ForEach(ex.primaryMuscles, id: \.self) { Chip(text: $0.label, on: true) }
+                        if !ex.secondaryMuscles.isEmpty { Chip(text: ex.secondaryMuscles.map(\.label).joined(separator: " · ")) }
+                        Chip(text: ex.equipment.label)
+                        Chip(text: ex.laterality.label)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    if let en = ex.nameEn {
+                        Text(en).font(.system(size: 12)).foregroundStyle(Theme.tertiary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                     progressCard(ex, p)
                     if history.count >= 2 { chartCard(history) } else {
                         Text("再训练几次就能看到进步曲线了").font(.system(size: 14)).foregroundStyle(Theme.secondary).frame(maxWidth: .infinity).card()
@@ -52,6 +50,13 @@ struct ExerciseDetailView: View {
                         .frame(maxWidth: .infinity, alignment: .leading).card()
                     } else if !ex.isBuiltin {
                         Text("自定义动作暂无演示图与要点").font(.system(size: 13)).foregroundStyle(Theme.tertiary)
+                    }
+                    if ExerciseArtwork.has(ex.id) {
+                        NavigationLink { CreditsView() } label: {
+                            Text("演示图 © Everkinetic · CC BY-SA 3.0")
+                                .font(.system(size: 11)).foregroundStyle(Theme.tertiary)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
                     }
                 }
                 .padding(16)

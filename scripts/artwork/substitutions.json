@@ -1,0 +1,67 @@
+{
+  "_note": "2B：原动作在 Everkinetic 图库里没有对应插画，换成有图的近似动作。key 是原 id。",
+  "one-arm-dumbbell-row": {
+    "id": "underhand-lat-pulldown", "nameZh": "反握高位下拉", "nameEn": "Underhand Lat Pulldown",
+    "image": "underhand pull down"
+  },
+  "chest-supported-row": {
+    "id": "hyperextension", "nameZh": "山羊挺身", "nameEn": "Hyperextension",
+    "image": "hyperextensions", "equipment": "bodyweight", "primaryMuscles": ["back"], "secondaryMuscles": ["glutes", "hamstrings"]
+  },
+  "pike-push-up": {
+    "id": "front-dumbbell-raise", "nameZh": "哑铃前平举", "nameEn": "Front Dumbbell Raise",
+    "image": "front dumbbell raise", "equipment": "dumbbell", "isCompound": false
+  },
+  "barbell-wrist-curl": {
+    "id": "zottman-curl", "nameZh": "佐特曼弯举", "nameEn": "Zottman Curl",
+    "image": "zottman curl with dumbbells", "equipment": "dumbbell", "primaryMuscles": ["biceps", "forearms"]
+  },
+  "farmers-walk": {
+    "id": "reverse-curl", "nameZh": "反握弯举", "nameEn": "Reverse Curl",
+    "image": "biceps curl reverse with dumbbells", "equipment": "dumbbell", "primaryMuscles": ["forearms", "biceps"], "isCompound": false
+  },
+  "bulgarian-split-squat": {
+    "id": "reverse-lunge", "nameZh": "后撤箭步蹲", "nameEn": "Reverse Lunge",
+    "image": "rear lunges with barbell", "equipment": "barbell"
+  },
+  "nordic-curl": {
+    "id": "standing-leg-curl", "nameZh": "站姿腿弯举", "nameEn": "Standing Leg Curl",
+    "image": "standing leg curls", "equipment": "machine"
+  },
+  "hip-thrust": {
+    "id": "plie-squat", "nameZh": "相扑深蹲", "nameEn": "Plié Squat",
+    "image": "pile squat with dumbbell", "equipment": "dumbbell"
+  },
+  "sumo-deadlift": {
+    "id": "good-morning", "nameZh": "早安式体前屈", "nameEn": "Good Morning",
+    "image": "barbell good mornings", "equipment": "barbell", "primaryMuscles": ["hamstrings"], "secondaryMuscles": ["glutes", "back"]
+  },
+  "plank": {
+    "id": "side-plank", "nameZh": "侧平板支撑", "nameEn": "Side Plank",
+    "image": "side plank", "equipment": "bodyweight"
+  },
+  "ab-wheel-rollout": {
+    "id": "kneeling-barbell-rollout", "nameZh": "跪姿杠铃前滚", "nameEn": "Kneeling Barbell Rollout",
+    "image": "ab rollout on knees with barbell", "equipment": "barbell"
+  },
+  "captains-chair-knee-raise": {
+    "id": "bent-knee-hip-raise", "nameZh": "屈膝抬臀", "nameEn": "Bent-Knee Hip Raise",
+    "image": "bent knee hip raise", "equipment": "bodyweight"
+  },
+  "pallof-press": {
+    "id": "air-bike", "nameZh": "空中自行车", "nameEn": "Air Bike",
+    "image": "air bike", "equipment": "bodyweight"
+  },
+  "russian-twist": {
+    "id": "dumbbell-side-bend", "nameZh": "哑铃体侧屈", "nameEn": "Dumbbell Side Bend",
+    "image": "side bend with dumbbell", "equipment": "dumbbell"
+  },
+  "hanging-leg-raise": {
+    "id": "lying-leg-raise", "nameZh": "仰卧举腿", "nameEn": "Lying Leg Raise",
+    "image": "flat bench leg raises", "equipment": "bodyweight"
+  },
+  "barbell-row": {
+    "id": "reverse-grip-barbell-row", "nameZh": "反握杠铃划船", "nameEn": "Reverse-Grip Barbell Row",
+    "image": "reverse grips bent over barbell rows"
+  }
+}

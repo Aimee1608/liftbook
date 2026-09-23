@@ -41,6 +41,7 @@ struct SettingsView: View {
             }
             Section("关于") {
                 NavigationLink("免责声明") { DisclaimerView(requiresAcceptance: false) }
+                NavigationLink("素材来源与许可") { CreditsView() }
                 NavigationLink("关于本应用") { AboutView() }
             }
         }
@@ -95,7 +96,7 @@ struct AboutView: View {
                 HStack { Text("版本"); Spacer(); Text(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "").foregroundStyle(Theme.secondary) }
             }
             Section("动作库") {
-                Text("内置动作库由开发者自行编写，动作名称与肌群、器械归类为通行事实，动作要点为原创内容。").font(.system(size: 14)).foregroundStyle(Theme.secondary)
+                Text("动作名称、肌群与器械归类、动作要点由开发者自行编写；动作演示图来自 Everkinetic，依据 CC BY-SA 3.0 使用，详见设置中的「素材来源与许可」。").font(.system(size: 14)).foregroundStyle(Theme.secondary)
             }
             Section("数据") {
                 Text("所有数据仅保存在本设备，随系统备份一起备份。应用不联网、不收集任何信息。").font(.system(size: 14)).foregroundStyle(Theme.secondary)
