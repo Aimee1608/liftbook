@@ -63,14 +63,17 @@ final class StoreShotTests: XCTestCase {
         shot(app, "4-history")
 
         tab(app, "动作")
+        sleep(1)
+        shot(app, "5-library")
+
         tap(app.buttons["lib-barbell-bench-press"])
         XCTAssertTrue(app.buttons["adjust-progress"].waitForExistence(timeout: 8))
         sleep(1)
-        shot(app, "5-detail")
+        shot(app, "6-detail")
 
         tab(app, "训练")
         tap(app.buttons["switch-day"])
         sleep(1)
-        shot(app, "6-switch-day")
+        shot(app, "7-switch-day")
     }
 }
